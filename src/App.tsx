@@ -9,7 +9,10 @@ import AlunoDashboard from './pages/Aluno/AlunoDashboard'
 import AlunoLogin from './pages/Aluno/AlunoLogin'
 
 import FormeAPalavra from './pages/Aluno/Jogos/FormeAPalavra'
+
 import CorridaDasPalavras from './pages/Aluno/Jogos/CorridaDasPalavras'
+import QuizdeOrtografia from './pages/Aluno/Jogos/QuizdeOrtografia'
+
 
 function App() {
   return (
@@ -50,6 +53,12 @@ function App() {
         <Route
           path="/Aluno/Jogos/corridaDasPalavras"
           element={<CorridaDasPalavras />}
+        />
+        
+         <Route
+          path="/Aluno/Jogos/QuizdeOrtografia"
+          element={<QuizdeOrtografia />}
+
         />
 
       </Routes>
