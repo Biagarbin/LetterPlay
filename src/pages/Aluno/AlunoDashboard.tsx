@@ -30,7 +30,7 @@ function AlunoDashboard() {
     nome: 'Quiz de Ortografia',
     emoji: '📝',
     cor: '#4ECDC4',
-    rota: '/Aluno/Jogos/quizDeOrtografia',
+    rota: '/Aluno/Jogos/QuizDeOrtografia',
   },
   {
     nome: 'Corrida das Palavras',
@@ -112,7 +112,7 @@ function AlunoDashboard() {
 
       <section className="mx-auto max-w-7xl px-6 py-8">
 
-       
+
 
         <div className="rounded-[30px] bg-[#4ECDC4] p-8 text-white shadow-lg">
 
