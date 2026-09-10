@@ -1,32 +1,31 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, CheckCircle, RotateCcw } from 'lucide-react'
 
 type Palavra = {
+  imagem: string
   palavra: string
-  emoji: string
 }
 
 const palavras: Palavra[] = [
   {
-    palavra: 'BOLA',
-    emoji: '⚽',
+    imagem: '🏔️',
+    palavra: 'LAGO',
   },
   {
+    imagem: '🐱',
     palavra: 'GATO',
-    emoji: '🐱',
   },
   {
+    imagem: '🏠',
     palavra: 'CASA',
-    emoji: '🏠',
   },
   {
+    imagem: '🐸',
     palavra: 'SAPO',
-    emoji: '🐸',
   },
   {
-    palavra: 'PATO',
-    emoji: '🦆',
+    imagem: '☀️',
+    palavra: 'SOL',
   },
 ]
 
@@ -34,123 +33,117 @@ function embaralhar(letras: string[]) {
   return [...letras].sort(() => Math.random() - 0.5)
 }
 
-function FormeAPalavra() {
+function CorridaDasPalavras() {
   const navigate = useNavigate()
 
   const [indice, setIndice] = useState(0)
-  const [letrasEscolhidas, setLetrasEscolhidas] = useState<string[]>([])
-  const [letrasDisponiveis, setLetrasDisponiveis] = useState<string[]>(
+  const [resposta, setResposta] = useState<string[]>([])
+  const [letras, setLetras] = useState<string[]>(() =>
     embaralhar(palavras[0].palavra.split(''))
   )
+  const [erros, setErros] = useState(0)
   const [mensagem, setMensagem] = useState('')
-  const [acertos, setAcertos] = useState(0)
-  const [terminou, setTerminou] = useState(false)
+  const [finalizado, setFinalizado] = useState(false)
 
-  const palavraAtual = palavras[indice]
+  const atual = palavras[indice]
 
-  function escolherLetra(letra: string, index: number) {
-    setLetrasEscolhidas([...letrasEscolhidas, letra])
+  const proximaLetra =
+    atual.palavra[resposta.length]
 
-    setLetrasDisponiveis(
-      letrasDisponiveis.filter((_, i) => i !== index)
-    )
-  }
+  function clicarLetra(letra: string, index: number) {
+    if (mensagem) return
 
-  function removerLetra(index: number) {
-    const letra = letrasEscolhidas[index]
+    if (letra === proximaLetra) {
+      const novaResposta = [...resposta, letra]
 
-    setLetrasEscolhidas(
-      letrasEscolhidas.filter((_, i) => i !== index)
-    )
+      setResposta(novaResposta)
 
-    setLetrasDisponiveis([
-      ...letrasDisponiveis,
-      letra,
-    ])
-  }
+      setLetras(
+        letras.filter((_, i) => i !== index)
+      )
 
-  function verificar() {
-    const resposta = letrasEscolhidas.join('')
+      if (novaResposta.length === atual.palavra.length) {
+        setMensagem('🎉 Muito bem! Você acertou!')
 
-    if (resposta === palavraAtual.palavra) {
-      setMensagem('Muito bem! 🎉 Você acertou!')
+        setTimeout(() => {
+          if (indice + 1 >= palavras.length) {
+            setFinalizado(true)
+            return
+          }
 
-      setAcertos(acertos + 1)
+          const proximo = indice + 1
+
+          setIndice(proximo)
+          setResposta([])
+          setLetras(
+            embaralhar(
+              palavras[proximo].palavra.split('')
+            )
+          )
+          setMensagem('')
+        }, 1200)
+      }
+    } else {
+      setErros(erros + 1)
+      setMensagem('❌ Ops! Tente novamente!')
 
       setTimeout(() => {
-        proximaPalavra()
-      }, 1200)
-    } else {
-      setMensagem('Ops! Tente novamente. 💪')
+        setMensagem('')
+      }, 800)
     }
-  }
-
-  function proximaPalavra() {
-    if (indice + 1 >= palavras.length) {
-      setTerminou(true)
-      return
-    }
-
-    const proximoIndice = indice + 1
-
-    setIndice(proximoIndice)
-
-    setLetrasEscolhidas([])
-
-    setLetrasDisponiveis(
-      embaralhar(
-        palavras[proximoIndice].palavra.split('')
-      )
-    )
-
-    setMensagem('')
   }
 
   function reiniciar() {
     setIndice(0)
-    setAcertos(0)
-    setLetrasEscolhidas([])
-    setLetrasDisponiveis(
+    setResposta([])
+    setLetras(
       embaralhar(palavras[0].palavra.split(''))
     )
+    setErros(0)
     setMensagem('')
-    setTerminou(false)
+    setFinalizado(false)
   }
 
-  if (terminou) {
-    const porcentagem = Math.round(
-      (acertos / palavras.length) * 100
+  if (finalizado) {
+    const acertos = palavras.length
+    const porcentagem = Math.max(
+      0,
+      Math.round(
+        ((acertos * 100) /
+          (acertos + erros)) *
+          1
+      )
     )
 
     return (
       <main className="min-h-screen bg-[#FFFBF0] px-6 py-10">
 
-        <div className="mx-auto flex min-h-[80vh] max-w-2xl flex-col items-center justify-center">
+        <div className="mx-auto flex min-h-[80vh] max-w-2xl flex-col items-center justify-center text-center">
 
           <div className="text-8xl">
             🏆
           </div>
 
-          <h1 className="mt-6 text-center text-4xl font-black text-[#FF6B6B]">
-            Parabéns! 🎉
+          <h1 className="mt-6 text-5xl font-black text-[#FF6B6B]">
+            Corrida finalizada!
           </h1>
 
-          <p className="mt-4 text-center text-2xl font-bold text-gray-700">
-            Você terminou o jogo!
+          <p className="mt-4 text-2xl font-bold text-gray-600">
+            Você completou todas as palavras! 🎉
           </p>
 
-          <div className="mt-8 rounded-3xl bg-white p-8 text-center shadow-lg">
+          <div className="mt-8 rounded-[30px] bg-white p-8 shadow-xl">
 
-            <p className="text-gray-500">
-              Sua pontuação
+            <p className="text-lg text-gray-500">
+              Palavras completadas
             </p>
 
-            <strong className="text-6xl font-black text-[#4ECDC4]">
-              {porcentagem}%
-            </strong>
+            <p className="mt-2 text-5xl font-black text-[#4ECDC4]">
+              {acertos}/{palavras.length}
+            </p>
 
-            <p className="mt-3 font-bold">
-              {acertos} de {palavras.length} palavras
+            <p className="mt-4 text-lg font-bold text-gray-600">
+              ⭐ Pontuação: {porcentagem}%
             </p>
 
           </div>
@@ -159,17 +152,16 @@ function FormeAPalavra() {
 
             <button
               onClick={reiniciar}
-              className="flex items-center gap-2 rounded-2xl bg-[#4ECDC4] px-6 py-4 font-black text-white"
+              className="rounded-2xl bg-[#4ECDC4] px-6 py-4 font-black text-white"
             >
-              <RotateCcw size={20} />
-              Jogar novamente
+              🔄 Jogar novamente
             </button>
 
             <button
               onClick={() => navigate('/aluno/dashboard')}
               className="rounded-2xl bg-[#C084FC] px-6 py-4 font-black text-white"
             >
-              Voltar
+              🏠 Voltar
             </button>
 
           </div>
@@ -181,104 +173,147 @@ function FormeAPalavra() {
   }
 
   return (
-    <main className="min-h-screen bg-[#FFFBF0] px-6 py-8">
+    <main className="min-h-screen bg-[#FFFBF0] px-4 py-6">
 
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-3xl">
+
+        {/* VOLTAR */}
 
         <button
           onClick={() => navigate('/aluno/dashboard')}
-          className="flex items-center gap-2 font-bold text-gray-600"
+          className="mb-4 font-bold text-gray-500"
         >
-          <ArrowLeft size={20} />
-          Voltar aos jogos
+          ← Voltar
         </button>
 
-        <div className="mt-8 rounded-[35px] bg-[#FF6B6B] p-8 text-center text-white shadow-lg">
+        {/* BARRA DA CORRIDA */}
 
-          <h1 className="text-4xl font-black">
-            🔤 Forme a Palavra
-          </h1>
+        <div className="relative h-14 overflow-hidden rounded-b-[30px] bg-gray-100">
 
-          <p className="mt-3 text-lg">
-            Organize as letras e descubra a palavra!
-          </p>
+          <div
+            className="absolute left-0 top-0 h-1 rounded-full bg-[#FFD93D]"
+            style={{
+              width: `${
+                ((indice + resposta.length / atual.palavra.length) /
+                  palavras.length) *
+                100
+              }%`,
+            }}
+          />
 
-        </div>
-
-        <div className="mt-6 flex justify-between rounded-2xl bg-white p-5 shadow">
-
-          <span className="font-bold">
-            Palavra {indice + 1} de {palavras.length}
-          </span>
-
-          <span className="font-bold text-[#4ECDC4]">
-            ⭐ Acertos: {acertos}
-          </span>
-
-        </div>
-
-        <div className="mt-8 rounded-[35px] bg-white p-8 text-center shadow-lg">
-
-          <div className="text-8xl">
-            {palavraAtual.emoji}
-          </div>
-
-          <p className="mt-4 text-xl font-bold text-gray-500">
-            Qual é a palavra?
-          </p>
-
-          {/* LETRAS ESCOLHIDAS */}
-
-          <div className="mt-8 flex min-h-20 flex-wrap justify-center gap-3">
-
-            {letrasEscolhidas.map((letra, index) => (
-
-              <button
-                key={index}
-                onClick={() => removerLetra(index)}
-                className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FFD93D] text-3xl font-black text-gray-800 shadow-md transition hover:scale-105"
-              >
-                {letra}
-              </button>
-
-            ))}
-
-          </div>
-
-          {/* LETRAS DISPONÍVEIS */}
-
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-
-            {letrasDisponiveis.map((letra, index) => (
-
-              <button
-                key={index}
-                onClick={() => escolherLetra(letra, index)}
-                className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#60A5FA] text-3xl font-black text-white shadow-md transition hover:scale-105"
-              >
-                {letra}
-              </button>
-
-            ))}
-
-          </div>
-
-          {mensagem && (
-            <div className="mt-8 rounded-2xl bg-[#4ADE80] p-4 text-xl font-black text-white">
-              {mensagem}
-            </div>
-          )}
-
-          <button
-            onClick={verificar}
-            disabled={letrasEscolhidas.length !== palavraAtual.palavra.length}
-            className="mt-8 flex w-full items-center justify-center gap-2 rounded-2xl bg-[#C084FC] py-4 text-xl font-black text-white disabled:cursor-not-allowed disabled:opacity-40"
+          <div
+            className="absolute top-2 transition-all duration-500"
+            style={{
+              left: `${
+                ((indice + resposta.length / atual.palavra.length) /
+                  palavras.length) *
+                90
+              }%`,
+            }}
           >
-            <CheckCircle size={24} />
-            Conferir resposta
-          </button>
+            🏎️
+          </div>
 
         </div>
+
+        {/* IMAGEM */}
+
+        <div className="mt-5 flex flex-col items-center">
+
+          <div className="flex h-36 w-36 items-center justify-center overflow-hidden rounded-3xl bg-white text-8xl shadow-lg">
+            {atual.imagem}
+          </div>
+
+          {/* VIDAS */}
+
+          <div className="mt-3 flex gap-2 text-3xl">
+            <span className="text-red-500">
+              ❤️
+            </span>
+
+            <span className={erros >= 2 ? 'grayscale' : ''}>
+              ❤️
+            </span>
+          </div>
+
+        </div>
+
+        {/* DICA */}
+
+        <div className="mx-auto mt-5 max-w-xl rounded-3xl border-2 border-[#FFD93D] bg-[#FFFBF0] px-5 py-4 text-center">
+
+          <p className="font-black text-[#D97706]">
+
+            💡 DICA: a próxima letra é{' '}
+
+            <span className="text-[#FF6B6B]">
+              {proximaLetra}
+            </span>
+
+            {' '}— faltam{' '}
+
+            {atual.palavra.length - resposta.length}
+
+            {' '}letras
+
+          </p>
+
+        </div>
+
+        {/* RESPOSTA */}
+
+        <div className="mt-5 flex justify-center gap-2">
+
+          {atual.palavra.split('').map((_, index) => (
+
+            <div
+              key={index}
+              className="flex h-12 w-12 items-center justify-center rounded-xl border-[3px] border-gray-300 bg-white text-2xl font-black text-[#25364D]"
+            >
+              {resposta[index] || ''}
+            </div>
+
+          ))}
+
+        </div>
+
+        {/* LETRAS */}
+
+        <div className="mt-6 rounded-[30px] bg-white p-6 shadow-lg">
+
+          <div className="flex flex-wrap justify-center gap-3">
+
+            {letras.map((letra, index) => (
+
+              <button
+                key={`${letra}-${index}`}
+                onClick={() => clicarLetra(letra, index)}
+                className="flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-gray-200 bg-[#FFFBF0] text-3xl font-black text-[#25364D] shadow-sm transition hover:-translate-y-1 hover:scale-105 active:scale-95"
+              >
+                {letra}
+              </button>
+
+            ))}
+
+          </div>
+
+        </div>
+
+        {/* MENSAGEM */}
+
+        {mensagem && (
+
+          <div className="mt-5 rounded-2xl bg-[#4ADE80] p-4 text-center text-xl font-black text-white">
+
+            {mensagem}
+
+          </div>
+
+        )}
+
+        <p className="mt-5 text-center text-sm font-semibold tracking-wide text-gray-400">
+          CLIQUE NAS LETRAS NA ORDEM CERTA!
+        </p>
 
       </div>
 
@@ -286,4 +321,4 @@ function FormeAPalavra() {
   )
 }
 
-export default FormeAPalavra
+export default CorridaDasPalavras

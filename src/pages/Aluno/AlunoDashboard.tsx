@@ -20,57 +20,67 @@ function AlunoDashboard() {
   }
 
   const jogos = [
-    {
-      nome: 'Forme a Palavra',
-      emoji: '🔤',
-      cor: '#FF6B6B',
-    },
-    {
-      nome: 'Quiz de Ortografia',
-      emoji: '📝',
-      cor: '#C084FC',
-    },
-    {
-      nome: 'Corrida das Palavras',
-      emoji: '🏃',
-      cor: '#4ECDC4',
-    },
-    {
-      nome: 'Caça-Palavras',
-      emoji: '🔎',
-      cor: '#60A5FA',
-    },
-    {
-      nome: 'Imagem e Palavra',
-      emoji: '🖼️',
-      cor: '#FB923C',
-    },
-    {
-      nome: 'Cruzadinha',
-      emoji: '🧩',
-      cor: '#4ADE80',
-    },
-    {
-      nome: 'Matemática',
-      emoji: '➕',
-      cor: '#FFD93D',
-    },
-    {
-      nome: 'Desenho Livre',
-      emoji: '🎨',
-      cor: '#C084FC',
-    },
-    {
-      nome: 'Conta e Escreve',
-      emoji: '✏️',
-      cor: '#60A5FA',
-    },
+  {
+    nome: 'Forme a Palavra',
+    emoji: '🔤',
+    cor: '#FF6B6B',
+    rota: '/Aluno/Jogos/formeAPalavra',
+  },
+  {
+    nome: 'Quiz de Ortografia',
+    emoji: '📝',
+    cor: '#4ECDC4',
+    rota: '/Aluno/Jogos/quizDeOrtografia',
+  },
+  {
+    nome: 'Corrida das Palavras',
+    emoji: '🏎️',
+    cor: '#FB923C',
+    rota: '/Aluno/Jogos/corridaDasPalavras',
+  },
+  {
+    nome: 'Caça-Palavras',
+    emoji: '🔎',
+    cor: '#FFD93D',
+    rota: '',
+  },
+  {
+    nome: 'Imagem e Palavra',
+    emoji: '🖼️',
+    cor: '#C084FC',
+    rota: '',
+  },
+  {
+    nome: 'Cruzadinha',
+    emoji: '✏️',
+    cor: '#4ADE80',
+    rota: '',
+  },
+  {
+    nome: 'Matemática',
+    emoji: '🔢',
+    cor: '#60A5FA',
+    rota: '',
+  },
+  {
+    nome: 'Desenho Livre',
+    emoji: '🎨',
+    cor: '#FB923C',
+    rota: '',
+  },
+  {
+    nome: 'Conta e Escreve',
+    emoji: '✍️',
+    cor: '#FF6B6B',
+    rota: '',
+  },
+
   ]
 
   return (
     <main className="min-h-screen bg-[#FFFBF0]">
 
-      {/* CABEÇALHO */}
+      
 
       <header className="bg-white px-6 py-5 shadow-sm">
 
@@ -102,7 +112,7 @@ function AlunoDashboard() {
 
       <section className="mx-auto max-w-7xl px-6 py-8">
 
-        {/* BOAS-VINDAS */}
+       
 
         <div className="rounded-[30px] bg-[#4ECDC4] p-8 text-white shadow-lg">
 
@@ -132,7 +142,7 @@ function AlunoDashboard() {
 
         </div>
 
-        {/* INFORMAÇÕES */}
+        
 
         <div className="mt-8 grid gap-5 md:grid-cols-3">
 
@@ -213,7 +223,7 @@ function AlunoDashboard() {
 
         </div>
 
-        {/* PROGRESSO */}
+        
 
         <div className="mt-8 rounded-3xl bg-white p-6 shadow-md">
 
@@ -240,7 +250,6 @@ function AlunoDashboard() {
 
         </div>
 
-        {/* JOGOS */}
 
         <div className="mt-10">
 
@@ -263,7 +272,7 @@ function AlunoDashboard() {
 
               <button
                 key={jogo.nome}
-                onClick={() => navigate('/Aluno/Jogos/formeAPalavra')}
+                onClick={() => navigate(jogo.rota)}
                 className="group rounded-[28px] bg-white p-6 text-left shadow-md transition hover:-translate-y-2 hover:shadow-xl"
               >
 

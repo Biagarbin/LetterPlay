@@ -1,15 +1,20 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Home from './pages/Home'
+
 import ProfessorLogin from './pages/professor/ProfessorLogin'
 import ProfessorDashboard from './pages/professor/ProfessorDashboard'
+
 import AlunoDashboard from './pages/Aluno/AlunoDashboard'
 import AlunoLogin from './pages/Aluno/AlunoLogin'
+
 import FormeAPalavra from './pages/Aluno/Jogos/FormeAPalavra'
+import CorridaDasPalavras from './pages/Aluno/Jogos/CorridaDasPalavras'
 
 function App() {
   return (
     <BrowserRouter>
+
       <Routes>
 
         <Route
@@ -27,22 +32,28 @@ function App() {
           element={<ProfessorDashboard />}
         />
 
-         <Route
-          path="/ALuno/login"
+        <Route
+          path="/Aluno/login"
           element={<AlunoLogin />}
         />
 
-         <Route
+        <Route
           path="/Aluno/dashboard"
           element={<AlunoDashboard />}
         />
 
-          <Route
+        <Route
           path="/Aluno/Jogos/formeAPalavra"
           element={<FormeAPalavra />}
         />
 
+        <Route
+          path="/Aluno/Jogos/corridaDasPalavras"
+          element={<CorridaDasPalavras />}
+        />
+
       </Routes>
+
     </BrowserRouter>
   )
 }
