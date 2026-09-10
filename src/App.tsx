@@ -4,7 +4,8 @@ import Home from './pages/Home'
 import ProfessorLogin from './pages/professor/ProfessorLogin'
 import ProfessorDashboard from './pages/professor/ProfessorDashboard'
 import AlunoDashboard from './pages/Aluno/AlunoDashboard'
-import AlunoLogin from './pages/Aluno/alunoLogin'
+import AlunoLogin from './pages/Aluno/AlunoLogin'
+import FormeAPalavra from './pages/Aluno/Jogos/FormeAPalavra'
 
 function App() {
   return (
@@ -34,6 +35,11 @@ function App() {
          <Route
           path="/Aluno/dashboard"
           element={<AlunoDashboard />}
+        />
+
+          <Route
+          path="/Aluno/Jogos/formeAPalavra"
+          element={<FormeAPalavra />}
         />
 
       </Routes>
