@@ -177,7 +177,7 @@ function CorridaDasPalavras() {
 
       <div className="mx-auto max-w-3xl">
 
-        {/* VOLTAR */}
+       
 
         <button
           onClick={() => navigate('/aluno/dashboard')}
@@ -186,7 +186,7 @@ function CorridaDasPalavras() {
           ← Voltar
         </button>
 
-        {/* BARRA DA CORRIDA */}
+        
 
         <div className="relative h-14 overflow-hidden rounded-b-[30px] bg-gray-100">
 
@@ -216,7 +216,7 @@ function CorridaDasPalavras() {
 
         </div>
 
-        {/* IMAGEM */}
+        
 
         <div className="mt-5 flex flex-col items-center">
 
@@ -224,7 +224,7 @@ function CorridaDasPalavras() {
             {atual.imagem}
           </div>
 
-          {/* VIDAS */}
+         
 
           <div className="mt-3 flex gap-2 text-3xl">
             <span className="text-red-500">
@@ -238,7 +238,7 @@ function CorridaDasPalavras() {
 
         </div>
 
-        {/* DICA */}
+        
 
         <div className="mx-auto mt-5 max-w-xl rounded-3xl border-2 border-[#FFD93D] bg-[#FFFBF0] px-5 py-4 text-center">
 
@@ -260,7 +260,6 @@ function CorridaDasPalavras() {
 
         </div>
 
-        {/* RESPOSTA */}
 
         <div className="mt-5 flex justify-center gap-2">
 
@@ -277,7 +276,7 @@ function CorridaDasPalavras() {
 
         </div>
 
-        {/* LETRAS */}
+        
 
         <div className="mt-6 rounded-[30px] bg-white p-6 shadow-lg">
 
@@ -299,7 +298,7 @@ function CorridaDasPalavras() {
 
         </div>
 
-        {/* MENSAGEM */}
+       
 
         {mensagem && (
 

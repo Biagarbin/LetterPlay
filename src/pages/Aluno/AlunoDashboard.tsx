@@ -42,7 +42,7 @@ function AlunoDashboard() {
     nome: 'Caça-Palavras',
     emoji: '🔎',
     cor: '#FFD93D',
-    rota: '',
+    rota: '/Aluno/Jogos/cacaPalavra',
   },
   {
     nome: 'Imagem e Palavra',
