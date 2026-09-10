@@ -118,3 +118,6 @@ O comando `code .` abre a pasta atual diretamente no **Visual Studio Code**.
 ---
 
 **Desenvolvido por Ana Beatriz, Gabrielly, Raissa, Rafaelly e Yasmim.**
+**Professores: Claudio e Alex**
+
+---
