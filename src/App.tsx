@@ -13,6 +13,7 @@ import FormeAPalavra from './pages/Aluno/Jogos/FormeAPalavra'
 import CorridaDasPalavras from './pages/Aluno/Jogos/CorridaDasPalavras'
 import QuizdeOrtografia from './pages/Aluno/Jogos/QuizdeOrtografia'
 import ImagemEPalavra from './pages/Aluno/Jogos/ImagemePalavra'
+import DesenhoLivre from './pages/Aluno/Jogos/DesenhoLivre'
 
 
 function App() {
@@ -65,6 +66,12 @@ function App() {
              <Route
           path="/Aluno/Jogos/ImagemePalavra"
           element={<ImagemEPalavra />}
+
+        />
+
+            <Route
+          path="/Aluno/Jogos/DesenhoLivre"
+          element={<DesenhoLivre />}
 
         />
 

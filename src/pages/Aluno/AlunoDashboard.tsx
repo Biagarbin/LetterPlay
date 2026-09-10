@@ -66,7 +66,7 @@ function AlunoDashboard() {
     nome: 'Desenho Livre',
     emoji: '🎨',
     cor: '#FB923C',
-    rota: '',
+    rota: '/Aluno/Jogos/DesenhoLivre',
   },
   {
     nome: 'Conta e Escreve',
