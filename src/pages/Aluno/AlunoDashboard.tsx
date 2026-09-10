@@ -54,13 +54,13 @@ function AlunoDashboard() {
     nome: 'Cruzadinha',
     emoji: '✏️',
     cor: '#4ADE80',
-    rota: '',
+    rota: '/Aluno/Jogos/Cruzadinha',
   },
   {
     nome: 'Matemática',
     emoji: '🔢',
     cor: '#60A5FA',
-    rota: '',
+    rota: '/Aluno/Jogos/Matematica',
   },
   {
     nome: 'Desenho Livre',
@@ -72,7 +72,7 @@ function AlunoDashboard() {
     nome: 'Conta e Escreve',
     emoji: '✍️',
     cor: '#FF6B6B',
-    rota: '',
+    rota: '/Aluno/Jogos/ContaEscreve',
   },
 
   ]

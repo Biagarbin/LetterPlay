@@ -14,7 +14,15 @@ import FormeAPalavra from './pages/Aluno/Jogos/FormeAPalavra'
 
 import CorridaDasPalavras from './pages/Aluno/Jogos/CorridaDasPalavras'
 
+
 import CacaPalavra from './pages/Aluno/Jogos/CacaPalavra'
+
+
+import Matematica from './pages/Aluno/Jogos/Matematica' 
+
+import Cruzadinha from './pages/Aluno/Jogos/Cruzadinha'
+
+import ContaEEscreve from './pages/Aluno/Jogos/ContaEscreve'
 
 import QuizdeOrtografia from './pages/Aluno/Jogos/QuizdeOrtografia'
 
@@ -71,7 +79,6 @@ function App() {
 
         />
 
-
         <Route
           path="/Aluno/Jogos/cacaPalavra"
           element={<CacaPalavra />}
@@ -89,6 +96,24 @@ function App() {
           element={<DesenhoLivre />}
 
         />
+
+          <Route
+          path="/Aluno/Jogos/Matematica"
+          element={<Matematica/>}
+        />
+
+          <Route
+          path="/Aluno/Jogos/Cruzadinha"
+          element={<Cruzadinha/>}
+        />
+
+        <Route
+          path="/Aluno/Jogos/ContaEscreve"
+          element={<ContaEEscreve/>}
+        />
+
+
+
       </Routes>
 
     </BrowserRouter>
