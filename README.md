@@ -1,75 +1,120 @@
-# React + TypeScript + Vite
+# 🎮 Letter Play
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🏫 Escola SESI de Presidente Epitácio – SENAI
 
-Currently, two official plugins are available:
+**Projeto:** Letter Play
+**Ano/Série:** 2026 – 3º EM
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 👥 Integrantes
 
-## React Compiler
+* Ana Beatriz
+* Gabrielly
+* Raissa
+* Rafaelly
+* Yasmim
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📖 Sobre o projeto
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+O **Letter Play** é um projeto desenvolvido pelos alunos da Escola SESI de Presidente Epitácio – SENAI, como parte das atividades do **3º ano do Ensino Médio**.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# 📋 Manual – Fichamento Técnico
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 1. 🔗 Conectar com o GitHub
 
+Para configurar o Git e conectar o projeto ao GitHub, utilize os seguintes comandos no terminal:
+
+```bash
+git config --global user.name "SEU_NOME"
+git config --global user.email "SEU_EMAIL"
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Depois, faça o clone do repositório:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+git clone "URL_DO_REPOSITORIO"
 ```
+
+> **Observação:** substitua `SEU_NOME`, `SEU_EMAIL` e `URL_DO_REPOSITORIO` pelas informações correspondentes.
+
+---
+
+## 2. 📂 Acessar a pasta do projeto
+
+Após realizar o clone, entre na pasta do projeto:
+
+```bash
+cd LetterPlay
+```
+
+---
+
+## 3. 📦 Instalar as dependências
+
+Para instalar todas as dependências necessárias para executar o projeto, utilize:
+
+```bash
+npm install
+```
+
+Esse comando instala os pacotes e dependências definidos no projeto.
+
+---
+
+## 4. 🚀 Iniciar o servidor local
+
+Para iniciar o servidor de desenvolvimento local, execute:
+
+```bash
+npm run dev
+```
+
+Após executar esse comando, o terminal deverá apresentar o endereço local para acessar o projeto no navegador.
+
+---
+
+## 5. 💻 Abrir o projeto no Visual Studio Code
+
+Caso seja necessário abrir um novo terminal, entre novamente na pasta do projeto:
+
+```bash
+cd LetterPlay
+```
+
+Em seguida, utilize:
+
+```bash
+code .
+```
+
+O comando `code .` abre a pasta atual diretamente no **Visual Studio Code**.
+
+---
+
+# ⚙️ Resumo dos comandos
+
+| Comando                          | Função                               |
+| -------------------------------- | ------------------------------------ |
+| `git config --global user.name`  | Configura o nome do usuário no Git   |
+| `git config --global user.email` | Configura o e-mail do usuário no Git |
+| `git clone`                      | Baixa/clona o repositório do GitHub  |
+| `cd LetterPlay`                  | Entra na pasta do projeto            |
+| `npm install`                    | Instala as dependências              |
+| `npm run dev`                    | Inicia o servidor local              |
+| `code .`                         | Abre o projeto no Visual Studio Code |
+
+---
+
+## 📝 Informações acadêmicas
+
+**Escola:** Escola SESI de Presidente Epitácio – SENAI
+**Projeto:** Letter Play
+**Ano:** 2026
+**Turma:** 3º EM
+
+---
+
+**Desenvolvido por Ana Beatriz, Gabrielly, Raissa, Rafaelly e Yasmim.**
