@@ -30,7 +30,7 @@ function AlunoDashboard() {
     nome: 'Quiz de Ortografia',
     emoji: '📝',
     cor: '#4ECDC4',
-    rota: '/Aluno/Jogos/quizDeOrtografia',
+    rota: '/Aluno/Jogos/QuizDeOrtografia',
   },
   {
     nome: 'Corrida das Palavras',
@@ -48,7 +48,7 @@ function AlunoDashboard() {
     nome: 'Imagem e Palavra',
     emoji: '🖼️',
     cor: '#C084FC',
-    rota: '',
+    rota: '/Aluno/Jogos/ImagemePalavra',
   },
   {
     nome: 'Cruzadinha',
@@ -66,7 +66,7 @@ function AlunoDashboard() {
     nome: 'Desenho Livre',
     emoji: '🎨',
     cor: '#FB923C',
-    rota: '',
+    rota: '/Aluno/Jogos/DesenhoLivre',
   },
   {
     nome: 'Conta e Escreve',
@@ -112,7 +112,7 @@ function AlunoDashboard() {
 
       <section className="mx-auto max-w-7xl px-6 py-8">
 
-       
+
 
         <div className="rounded-[30px] bg-[#4ECDC4] p-8 text-white shadow-lg">
 

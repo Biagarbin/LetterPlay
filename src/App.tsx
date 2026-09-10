@@ -9,10 +9,17 @@ import AlunoDashboard from './pages/Aluno/AlunoDashboard'
 import AlunoLogin from './pages/Aluno/AlunoLogin'
 
 import FormeAPalavra from './pages/Aluno/Jogos/FormeAPalavra'
+
 import CorridaDasPalavras from './pages/Aluno/Jogos/CorridaDasPalavras'
+<<<<<<< HEAD
 import Matematica from './pages/Aluno/Jogos/Matematica' 
 import Cruzadinha from './pages/Aluno/Jogos/Cruzadinha'
 import ContaEEscreve from './pages/Aluno/Jogos/ContaEscreve'
+=======
+import QuizdeOrtografia from './pages/Aluno/Jogos/QuizdeOrtografia'
+import ImagemEPalavra from './pages/Aluno/Jogos/ImagemePalavra'
+import DesenhoLivre from './pages/Aluno/Jogos/DesenhoLivre'
+>>>>>>> ab75e2bdbaa3c6cd0d6333e2047feaab04ee3b82
 
 
 function App() {
@@ -55,6 +62,25 @@ function App() {
           path="/Aluno/Jogos/corridaDasPalavras"
           element={<CorridaDasPalavras />}
         />
+        
+         <Route
+          path="/Aluno/Jogos/QuizdeOrtografia"
+          element={<QuizdeOrtografia />}
+
+        />
+
+             <Route
+          path="/Aluno/Jogos/ImagemePalavra"
+          element={<ImagemEPalavra />}
+
+        />
+
+            <Route
+          path="/Aluno/Jogos/DesenhoLivre"
+          element={<DesenhoLivre />}
+
+        />
+
 
           <Route
           path="/Aluno/Jogos/Matematica"
