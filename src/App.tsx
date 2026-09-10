@@ -12,6 +12,8 @@ import FormeAPalavra from './pages/Aluno/Jogos/FormeAPalavra'
 import CorridaDasPalavras from './pages/Aluno/Jogos/CorridaDasPalavras'
 import Matematica from './pages/Aluno/Jogos/Matematica' 
 import Cruzadinha from './pages/Aluno/Jogos/Cruzadinha'
+import ContaEEscreve from './pages/Aluno/Jogos/ContaEscreve'
+
 
 function App() {
   return (
@@ -62,6 +64,11 @@ function App() {
           <Route
           path="/Aluno/Jogos/Cruzadinha"
           element={<Cruzadinha/>}
+        />
+
+        <Route
+          path="/Aluno/Jogos/ContaEscreve"
+          element={<ContaEEscreve/>}
         />
 
 

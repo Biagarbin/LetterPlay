@@ -72,7 +72,7 @@ function AlunoDashboard() {
     nome: 'Conta e Escreve',
     emoji: '✍️',
     cor: '#FF6B6B',
-    rota: '',
+    rota: '/Aluno/Jogos/ContaEscreve',
   },
 
   ]
