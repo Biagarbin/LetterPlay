@@ -48,7 +48,7 @@ function AlunoDashboard() {
     nome: 'Imagem e Palavra',
     emoji: '🖼️',
     cor: '#C084FC',
-    rota: '',
+    rota: '/Aluno/Jogos/ImagemePalavra',
   },
   {
     nome: 'Cruzadinha',
