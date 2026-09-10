@@ -263,7 +263,7 @@ function AlunoDashboard() {
 
               <button
                 key={jogo.nome}
-                onClick={() => {}}
+                onClick={() => navigate('/Aluno/Jogos/formeAPalavra')}
                 className="group rounded-[28px] bg-white p-6 text-left shadow-md transition hover:-translate-y-2 hover:shadow-xl"
               >
 
