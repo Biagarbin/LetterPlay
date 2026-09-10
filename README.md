@@ -35,7 +35,7 @@ git config --global user.email "SEU_EMAIL"
 Depois, faça o clone do repositório:
 
 ```bash
-git clone "URL_DO_REPOSITORIO"
+git clone https://github.com/Biagarbin/LetterPlay.git 
 ```
 
 > **Observação:** substitua `SEU_NOME`, `SEU_EMAIL` e `URL_DO_REPOSITORIO` pelas informações correspondentes.
@@ -66,7 +66,7 @@ Esse comando instala os pacotes e dependências definidos no projeto.
 
 ## 4. 🚀 Iniciar o servidor local
 
-Para iniciar o servidor de desenvolvimento local, execute:
+Para iniciar o servidor de desenvolvimento local (localhost:5173), execute:
 
 ```bash
 npm run dev
@@ -117,7 +117,10 @@ O comando `code .` abre a pasta atual diretamente no **Visual Studio Code**.
 
 ---
 
-**Desenvolvido por Ana Beatriz, Gabrielly, Raissa, Rafaelly e Yasmim.**
-**Professores: Claudio e Alex**
+**Desenvolvido por Ana Beatriz Garbin, Gabrielly Golçalves, Raissa Mauricio, Rafaelly Vieira e Yasmim Vitória.**
+
+---
+
+**Professores: Claudio e Alex.**
 
 ---
