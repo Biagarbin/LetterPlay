@@ -11,6 +11,7 @@ import AlunoLogin from './pages/Aluno/AlunoLogin'
 import FormeAPalavra from './pages/Aluno/Jogos/FormeAPalavra'
 import CorridaDasPalavras from './pages/Aluno/Jogos/CorridaDasPalavras'
 import Matematica from './pages/Aluno/Jogos/Matematica' 
+import Cruzadinha from './pages/Aluno/Jogos/Cruzadinha'
 
 function App() {
   return (
@@ -57,6 +58,12 @@ function App() {
           path="/Aluno/Jogos/Matematica"
           element={<Matematica/>}
         />
+
+          <Route
+          path="/Aluno/Jogos/Cruzadinha"
+          element={<Cruzadinha/>}
+        />
+
 
       </Routes>
 

@@ -54,7 +54,7 @@ function AlunoDashboard() {
     nome: 'Cruzadinha',
     emoji: '✏️',
     cor: '#4ADE80',
-    rota: '',
+    rota: '/Aluno/Jogos/Cruzadinha',
   },
   {
     nome: 'Matemática',
