@@ -48,7 +48,7 @@ function AlunoDashboard() {
     nome: 'Imagem e Palavra',
     emoji: '🖼️',
     cor: '#C084FC',
-    rota: '',
+    rota: '/Aluno/Jogos/ImagemePalavra',
   },
   {
     nome: 'Cruzadinha',
@@ -66,7 +66,7 @@ function AlunoDashboard() {
     nome: 'Desenho Livre',
     emoji: '🎨',
     cor: '#FB923C',
-    rota: '',
+    rota: '/Aluno/Jogos/DesenhoLivre',
   },
   {
     nome: 'Conta e Escreve',

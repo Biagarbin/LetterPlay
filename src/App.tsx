@@ -3,9 +3,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 
 import ProfessorLogin from './pages/professor/ProfessorLogin'
+
 import ProfessorDashboard from './pages/professor/ProfessorDashboard'
 
 import AlunoDashboard from './pages/Aluno/AlunoDashboard'
+
 import AlunoLogin from './pages/Aluno/AlunoLogin'
 
 import FormeAPalavra from './pages/Aluno/Jogos/FormeAPalavra'
@@ -15,6 +17,10 @@ import CorridaDasPalavras from './pages/Aluno/Jogos/CorridaDasPalavras'
 import CacaPalavra from './pages/Aluno/Jogos/CacaPalavra'
 
 import QuizdeOrtografia from './pages/Aluno/Jogos/QuizdeOrtografia'
+
+import ImagemEPalavra from './pages/Aluno/Jogos/ImagemePalavra'
+
+import DesenhoLivre from './pages/Aluno/Jogos/DesenhoLivre'
 
 
 
@@ -65,11 +71,24 @@ function App() {
 
         />
 
+
         <Route
           path="/Aluno/Jogos/cacaPalavra"
           element={<CacaPalavra />}
         />
 
+
+             <Route
+          path="/Aluno/Jogos/ImagemePalavra"
+          element={<ImagemEPalavra />}
+
+        />
+
+            <Route
+          path="/Aluno/Jogos/DesenhoLivre"
+          element={<DesenhoLivre />}
+
+        />
       </Routes>
 
     </BrowserRouter>
