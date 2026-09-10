@@ -60,7 +60,7 @@ function AlunoDashboard() {
     nome: 'Matemática',
     emoji: '🔢',
     cor: '#60A5FA',
-    rota: '',
+    rota: '/Aluno/Jogos/Matematica',
   },
   {
     nome: 'Desenho Livre',

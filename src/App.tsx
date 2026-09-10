@@ -10,6 +10,7 @@ import AlunoLogin from './pages/Aluno/AlunoLogin'
 
 import FormeAPalavra from './pages/Aluno/Jogos/FormeAPalavra'
 import CorridaDasPalavras from './pages/Aluno/Jogos/CorridaDasPalavras'
+import Matematica from './pages/Aluno/Jogos/Matematica' 
 
 function App() {
   return (
@@ -50,6 +51,11 @@ function App() {
         <Route
           path="/Aluno/Jogos/corridaDasPalavras"
           element={<CorridaDasPalavras />}
+        />
+
+          <Route
+          path="/Aluno/Jogos/Matematica"
+          element={<Matematica/>}
         />
 
       </Routes>
