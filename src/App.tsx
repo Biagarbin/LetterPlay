@@ -1,33 +1,39 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
 import Home from './pages/Home'
+import ProfessorLogin from './pages/professor/ProfessorLogin'
+import ProfessorDashboard from './pages/professor/ProfessorDashboard'
+import AlunoDashboard from './pages/Aluno/AlunoDashboard'
+import AlunoLogin from './pages/Aluno/alunoLogin'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
 
-        <Route path="/" element={<Home />} />
-
         <Route
-          path="/professor/login"
-          element={
-            <div className="flex min-h-screen items-center justify-center bg-[#FFFBF0]">
-              <h1 className="text-4xl font-bold text-[#C084FC]">
-                Login do Professor 👩‍🏫
-              </h1>
-            </div>
-          }
+          path="/"
+          element={<Home />}
         />
 
         <Route
-          path="/aluno/login"
-          element={
-            <div className="flex min-h-screen items-center justify-center bg-[#FFFBF0]">
-              <h1 className="text-4xl font-bold text-[#4ECDC4]">
-                Login do Aluno 🧒
-              </h1>
-            </div>
-          }
+          path="/professor/login"
+          element={<ProfessorLogin />}
+        />
+
+        <Route
+          path="/professor/dashboard"
+          element={<ProfessorDashboard />}
+        />
+
+         <Route
+          path="/ALuno/login"
+          element={<AlunoLogin />}
+        />
+
+         <Route
+          path="/Aluno/dashboard"
+          element={<AlunoDashboard />}
         />
 
       </Routes>

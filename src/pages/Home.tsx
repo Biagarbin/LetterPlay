@@ -71,10 +71,6 @@ function Home() {
 
         </div>
 
-        <div className="mt-12 flex gap-4 text-4xl">
-          📚 ✏️ ⭐ 🎨 🔤
-        </div>
-
       </div>
     </main>
   )
