@@ -107,39 +107,6 @@ O comando `code .` abre a pasta atual diretamente no **Visual Studio Code**.
 | `code .`                         | Abre o projeto no Visual Studio Code |
 
 ---
-📁 Estrutura dos componentes
-
-Os componentes do projeto estão organizados de forma a separar as telas do sistema dos jogos e atividades educativas.
-
-src/
-│
-├── games/
-│   ├── Crossword.tsx
-│   ├── DragDrop.tsx
-│   ├── DrawingGame.tsx
-│   ├── ImageWord.tsx
-│   ├── MathGame.tsx
-│   ├── MathPortugues.tsx
-│   ├── SpellingQuiz.tsx
-│   ├── WordRace.tsx
-│   └── WordSearch.tsx
-│
-├── screens/
-│   ├── HomeScreen.tsx
-│   ├── StudentHub.tsx
-│   ├── StudentLogin.tsx
-│   ├── StudentSelector.tsx
-│   ├── TeacherDashboard.tsx
-│   ├── TeacherLogin.tsx
-│   └── TeacherRegister.tsx
-│
-├── App.tsx
-├── index.css
-├── main.tsx
-├── store.ts
-└── types.ts
-
---- 
 
 ## 📝 Informações acadêmicas
 
