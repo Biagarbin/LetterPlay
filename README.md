@@ -12,9 +12,9 @@
 
 * Gabrielly Golçalves
 
-* Raissa Mauricio
-
 * Rafaelly Vieira
+
+* Raissa Mauricio
 
 * Yasmim Vitória
 
@@ -56,20 +56,19 @@ O Letter Play foi desenvolvido utilizando diferentes componentes para organizar 
 
 * **SpellingQuiz** – quiz de ortografia.
 
-* **WordRace** – corrida das palavras.
+* **WordRace** – corrida de palavras.
 
 * **WordSearch** – caça-palavras.
 
-* **ImageWord** – associação entre imagem e palavra.
+* **ImageWord** – associação imagem-palavra.
 
-* **Crossword** – cruzadinha.
+* **Crossword** – palavras cruzadas.
 
 * **MathGame** – jogo de matemática.
 
 * **DrawingGame** – atividade de desenho livre.
 
-* **MathPortugues** – atividade envolvendo Matemática e Língua Portuguesa.
-
+* **MathPortugues** – atividade envolvendo Matemática e Português.
 ---
 
 # 💻 Tecnologias utilizadas
@@ -179,42 +178,6 @@ O comando `code .` abre a pasta atual diretamente no **Visual Studio Code**.
 
 ---
 
-# 📁 Estrutura dos componentes
-
-Os componentes do projeto estão organizados de forma a separar as telas do sistema dos jogos e atividades educativas.
-
-```text
-src/
-│
-├── games/
-│   ├── Crossword.tsx
-│   ├── DragDrop.tsx
-│   ├── DrawingGame.tsx
-│   ├── ImageWord.tsx
-│   ├── MathGame.tsx
-│   ├── MathPortugues.tsx
-│   ├── SpellingQuiz.tsx
-│   ├── WordRace.tsx
-│   └── WordSearch.tsx
-│
-├── screens/
-│   ├── HomeScreen.tsx
-│   ├── StudentHub.tsx
-│   ├── StudentLogin.tsx
-│   ├── StudentSelector.tsx
-│   ├── TeacherDashboard.tsx
-│   ├── TeacherLogin.tsx
-│   └── TeacherRegister.tsx
-│
-├── App.tsx
-├── index.css
-├── main.tsx
-├── store.ts
-└── types.ts
-```
-
----
-
 ## 📝 Informações acadêmicas
 
 **Escola:** Escola SESI de Presidente Epitácio – SENAI
@@ -227,7 +190,7 @@ src/
 
 ---
 
-**Desenvolvido por Ana Beatriz Garbin, Gabrielly Golçalves, Raissa Mauricio, Rafaelly Vieira e Yasmim Vitória.**
+**Desenvolvido por Ana Beatriz Garbin, Gabrielly Golçalves, Rafaelly Vieira, Raissa Mauricio e Yasmim Vitória.**
 
 ---
 

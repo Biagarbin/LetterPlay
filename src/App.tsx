@@ -14,9 +14,7 @@ import FormeAPalavra from './pages/Aluno/Jogos/FormeAPalavra'
 
 import CorridaDasPalavras from './pages/Aluno/Jogos/CorridaDasPalavras'
 
-
 import CacaPalavra from './pages/Aluno/Jogos/CacaPalavra'
-
 
 import Matematica from './pages/Aluno/Jogos/Matematica' 
 
@@ -30,6 +28,13 @@ import ImagemEPalavra from './pages/Aluno/Jogos/ImagemePalavra'
 
 import DesenhoLivre from './pages/Aluno/Jogos/DesenhoLivre'
 
+import ProfessorAluno from './pages/professor/ProfessorAluno'
+
+import ProfessorTurma from './pages/professor/ProfessorTurma'
+
+import ProfessorDesempenho from './pages/professor/ProfessorDesempenho'
+
+import ProfessorHistorico from './pages/professor/ProfessorHistorico'
 
 
 function App() {
@@ -110,6 +115,26 @@ function App() {
         <Route
           path="/Aluno/Jogos/ContaEscreve"
           element={<ContaEEscreve/>}
+        />
+
+        <Route
+          path="/Professor/Aluno"
+          element={<ProfessorAluno/>}
+        />
+
+        <Route
+          path="/Professor/Turma"
+          element={<ProfessorTurma/>}
+        />
+
+        <Route
+          path="/Professor/Desempenho"
+          element={<ProfessorDesempenho/>}
+        />
+
+        <Route
+          path="/Professor/Historico"
+          element={<ProfessorHistorico/>}
         />
 
 

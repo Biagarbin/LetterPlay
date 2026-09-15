@@ -1,159 +1,351 @@
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {
-  Users,
-  School,
-  Trophy,
-  Gamepad2,
-  LogOut,
-} from 'lucide-react'
 
-  function ProfessorDashboard() {
+function ProfessorDashboard() {
   const navigate = useNavigate()
+
+  const [nome, setNome] = useState('Professora')
+  const [alunos, setAlunos] = useState<any[]>([])
+  const [turmas, setTurmas] = useState<any[]>([])
+  const [atividades, setAtividades] = useState<any[]>([])
+
+  useEffect(() => {
+    const logado = localStorage.getItem('letterplay_professor_logado')
+
+    if (logado !== 'true') {
+      navigate('/professor/login')
+      return
+    }
+
+    const nomeProfessor =
+      localStorage.getItem('letterplay_professor_nome') || 'Professora'
+
+    setNome(nomeProfessor)
+
+    const alunosSalvos = JSON.parse(
+      localStorage.getItem('letterplay_alunos') || '[]'
+    )
+
+    const turmasSalvas = JSON.parse(
+      localStorage.getItem('letterplay_turmas') || '[]'
+    )
+
+    const atividadesSalvas = JSON.parse(
+      localStorage.getItem('letterplay_atividades') || '[]'
+    )
+
+    setAlunos(alunosSalvos)
+    setTurmas(turmasSalvas)
+    setAtividades(atividadesSalvas)
+  }, [navigate])
 
   function sair() {
     localStorage.removeItem('letterplay_professor_logado')
+    localStorage.removeItem('letterplay_professor_nome')
+
     navigate('/')
   }
 
   return (
-    <main className="min-h-screen bg-[#FFFBF0]">
-
-      <header className="border-b bg-white px-6 py-5 shadow-sm">
-
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
+    <div
+      style={{
+        minHeight: '100vh',
+        background: '#FFFBF0',
+        fontFamily: 'Nunito, Arial, sans-serif',
+        color: '#26364D',
+      }}
+    >
+    
+      <header
+        style={{
+          height: '100px',
+          background: '#ffffff',
+          borderBottom: '1px solid #eeeeee',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0 11%',
+          boxSizing: 'border-box',
+        }}
+      >
+       
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '14px',
+          }}
+        >
+          <div
+            style={{
+              fontSize: '40px',
+              lineHeight: 1,
+            }}
+          >
+            📚
+          </div>
 
           <div>
-            <h1 className="text-3xl font-black text-[#C084FC]">
-              Letter Play 🌟
+            <h1
+              style={{
+                margin: 0,
+                fontSize: '29px',
+                fontWeight: 900,
+                color: '#FF6B6B',
+                letterSpacing: '-1px',
+              }}
+            >
+              Letter Play
             </h1>
 
-            <p className="text-gray-500">
-              Olá, Professor! 👋
+            <p
+              style={{
+                margin: '2px 0 0',
+                fontSize: '15px',
+                color: '#999999',
+              }}
+            >
+              Olá, {nome}! 👋
             </p>
           </div>
-
-          <button
-            onClick={sair}
-            className="flex items-center gap-2 rounded-xl bg-red-100 px-4 py-3 font-bold text-red-600"
-          >
-            <LogOut size={18} />
-            Sair
-          </button>
-
         </div>
 
+     
+        <button
+          onClick={sair}
+          style={{
+            background: '#ffffff',
+            border: '2px solid #E5E7EB',
+            borderRadius: '16px',
+            padding: '10px 22px',
+            fontSize: '16px',
+            fontWeight: 700,
+            color: '#777777',
+            cursor: 'pointer',
+          }}
+        >
+          Sair
+        </button>
       </header>
 
-      <section className="mx-auto max-w-7xl px-6 py-10">
-
-        <h2 className="mb-8 text-4xl font-black text-gray-800">
-          Dashboard 📊
-        </h2>
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-
-          <div className="rounded-3xl bg-[#60A5FA] p-6 text-white shadow-lg">
-            <Users size={36} />
-
-            <p className="mt-4 text-lg font-bold">
-              Alunos
-            </p>
-
-            <strong className="text-4xl">
-              0
-            </strong>
-          </div>
-
-          <div className="rounded-3xl bg-[#4ECDC4] p-6 text-white shadow-lg">
-            <School size={36} />
-
-            <p className="mt-4 text-lg font-bold">
-              Turmas
-            </p>
-
-            <strong className="text-4xl">
-              0
-            </strong>
-          </div>
-
-          <div className="rounded-3xl bg-[#FFD93D] p-6 text-gray-800 shadow-lg">
-            <Trophy size={36} />
-
-            <p className="mt-4 text-lg font-bold">
-              Atividades
-            </p>
-
-            <strong className="text-4xl">
-              0
-            </strong>
-          </div>
-
-          <div className="rounded-3xl bg-[#FB923C] p-6 text-white shadow-lg">
-            <Gamepad2 size={36} />
-
-            <p className="mt-4 text-lg font-bold">
-              Jogos realizados
-            </p>
-
-            <strong className="text-4xl">
-              0
-            </strong>
-          </div>
-
-        </div>
-
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-
-          <button className="rounded-3xl bg-white p-8 text-left shadow-lg transition hover:-translate-y-1">
-            <Users
-              className="text-[#60A5FA]"
-              size={40}
-            />
-
-            <h3 className="mt-4 text-2xl font-black">
-              Gerenciar alunos
-            </h3>
-
-            <p className="mt-2 text-gray-500">
-              Adicione e acompanhe seus alunos.
-            </p>
+      
+      <main
+        style={{
+          maxWidth: '1060px',
+          margin: '30px auto',
+          padding: '0 20px',
+        }}
+      >
+     
+        <nav
+          style={{
+            background: '#ffffff',
+            borderRadius: '24px',
+            padding: '8px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '5px',
+            width: 'fit-content',
+            boxShadow: '0 5px 15px rgba(0,0,0,0.06)',
+            marginBottom: '38px',
+          }}
+        >
+          <button
+            onClick={() => navigate('/Professor/Turma')}
+            style={menuButton(false)}
+          >
+            🏫 <span>Turmas</span>
           </button>
 
-          <button className="rounded-3xl bg-white p-8 text-left shadow-lg transition hover:-translate-y-1">
-            <School
-              className="text-[#4ECDC4]"
-              size={40}
-            />
-
-            <h3 className="mt-4 text-2xl font-black">
-              Gerenciar turmas
-            </h3>
-
-            <p className="mt-2 text-gray-500">
-              Organize suas turmas.
-            </p>
+          <button
+            onClick={() => navigate('/Professor/Aluno')}
+            style={menuButton(false)}
+          >
+            👥 <span>Alunos</span>
           </button>
 
-          <button className="rounded-3xl bg-white p-8 text-left shadow-lg transition hover:-translate-y-1">
-            <Trophy
-              className="text-[#FB923C]"
-              size={40}
-            />
-
-            <h3 className="mt-4 text-2xl font-black">
-              Desempenho
-            </h3>
-
-            <p className="mt-2 text-gray-500">
-              Veja a evolução dos alunos.
-            </p>
+          <button
+            onClick={() => navigate('/Professor/Desempenho')}
+            style={menuButton(true)}
+          >
+            📊 <span>Desempenho</span>
           </button>
 
-        </div>
+          <button
+            onClick={() => navigate('/Professor/Historico/1')}
+            style={menuButton(false)}
+          >
+            📋 <span>Histórico</span>
+          </button>
+        </nav>       
 
-      </section>
+      
+      </main>
+    </div>
+  )
+}
 
-    </main>
+
+function menuButton(ativo: boolean) {
+  return {
+    border: 'none',
+    background: ativo ? '#FF6B6B' : 'transparent',
+    color: ativo ? '#ffffff' : '#777777',
+    borderRadius: '17px',
+    padding: '13px 20px',
+    fontSize: '16px',
+    fontWeight: 800,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '7px',
+  }
+}
+
+
+
+type ResumoCardProps = {
+  emoji: string
+  titulo: string
+  valor: number
+  cor: string
+}
+
+function ResumoCard({
+  emoji,
+  titulo,
+  valor,
+  cor,
+}: ResumoCardProps) {
+  return (
+    <div
+      style={{
+        background: cor,
+        borderRadius: '24px',
+        padding: '22px',
+        minHeight: '135px',
+        boxSizing: 'border-box',
+        boxShadow: '0 7px 15px rgba(0,0,0,0.08)',
+      }}
+    >
+      <div
+        style={{
+          fontSize: '30px',
+          marginBottom: '12px',
+        }}
+      >
+        {emoji}
+      </div>
+
+      <div
+        style={{
+          fontSize: '17px',
+          fontWeight: 800,
+          color:
+            cor === '#FFD93D'
+              ? '#26364D'
+              : '#ffffff',
+        }}
+      >
+        {titulo}
+      </div>
+
+      <div
+        style={{
+          fontSize: '34px',
+          fontWeight: 900,
+          color:
+            cor === '#FFD93D'
+              ? '#26364D'
+              : '#ffffff',
+          marginTop: '2px',
+        }}
+      >
+        {valor}
+      </div>
+    </div>
+  )
+}
+
+
+
+type AcaoCardProps = {
+  emoji: string
+  titulo: string
+  descricao: string
+  cor: string
+  onClick: () => void
+}
+
+function AcaoCard({
+  emoji,
+  titulo,
+  descricao,
+  cor,
+  onClick,
+}: AcaoCardProps) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        background: '#ffffff',
+        border: 'none',
+        borderRadius: '24px',
+        padding: '28px',
+        textAlign: 'left',
+        cursor: 'pointer',
+        minHeight: '170px',
+        boxShadow: '0 7px 17px rgba(0,0,0,0.07)',
+        transition: 'transform 0.2s',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-4px)'
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0)'
+      }}
+    >
+      <div
+        style={{
+          fontSize: '38px',
+          marginBottom: '15px',
+        }}
+      >
+        {emoji}
+      </div>
+
+      <h3
+        style={{
+          margin: 0,
+          fontSize: '23px',
+          fontWeight: 900,
+          color: '#111111',
+        }}
+      >
+        {titulo}
+      </h3>
+
+      <p
+        style={{
+          margin: '8px 0 0',
+          fontSize: '16px',
+          color: '#999999',
+        }}
+      >
+        {descricao}
+      </p>
+
+      <div
+        style={{
+          marginTop: '15px',
+          color: cor,
+          fontWeight: 800,
+          fontSize: '15px',
+        }}
+      >
+        Acessar →
+      </div>
+    </button>
   )
 }
 
