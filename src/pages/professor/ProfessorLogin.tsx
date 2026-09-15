@@ -13,7 +13,7 @@ function ProfessorLogin() {
   function entrar(event: FormEvent) {
     event.preventDefault()
 
-    // Login provisório
+    
     if (email === 'professor@letterplay.com' && senha === '123456') {
       localStorage.setItem(
         'letterplay_professor_logado',

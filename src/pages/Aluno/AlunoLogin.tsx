@@ -13,7 +13,7 @@ function AlunoLogin() {
   function entrar(event: FormEvent) {
     event.preventDefault()
 
-    // Login provisório para teste
+    
     if (email === 'aluno@letterplay.com' && senha === '123456') {
       localStorage.setItem(
         'letterplay_aluno_logado',

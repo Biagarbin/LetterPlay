@@ -13,7 +13,7 @@ const atividades: Atividade[] = [
     palavra: 'BORBOLETA',
     emoji: '🦋',
     dica: 'É um inseto que voa',
-    letras: ['B', 'T', 'O', 'L', 'O', 'A', 'E', 'R', 'B'],
+    letras: ['B', 'T', 'O', 'L', 'O', 'A', 'E', 'R', 'B', 'H'],
   },
   {
     palavra: 'CACHORRO',
@@ -132,7 +132,7 @@ function CorridaDasPalavras() {
     const proximaLetra =
       atividade.palavra[letrasEscolhidas.length]
 
-    // ACERTO
+  
     if (letra === proximaLetra) {
       const novasEscolhidas = [
         ...letrasEscolhidas,
