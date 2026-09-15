@@ -1,7 +1,3 @@
-Simmm, agora entendi 😅 Você quer **o Markdown escrito literalmente**, com `#`, `##`, `**`, `*`, `---`, tabelas etc., para copiar e colar no `README.md`.
-
-Então, mantendo **exatamente esse estilo** e acrescentando os componentes do Letter Play:
-
 # 🎮 Letter Play
 
 ## 🏫 Escola SESI de Presidente Epitácio – SENAI
@@ -238,5 +234,3 @@ src/
 **Professores: Claudio e Alex.**
 
 ---
-
-**Esse é o formato que você deve colocar dentro do `README.md`.** Os `#`, `##`, `**`, `*`, tabelas e blocos ` ```bash ` fazem parte do código Markdown e devem permanecer no arquivo.
