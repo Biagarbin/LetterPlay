@@ -3,21 +3,91 @@
 ## 🏫 Escola SESI de Presidente Epitácio – SENAI
 
 **Projeto:** Letter Play
+
 **Ano/Série:** 2026 – 3º EM
 
 ### 👥 Integrantes
 
-* Ana Beatriz
-* Gabrielly
-* Raissa
-* Rafaelly
-* Yasmim
+* Ana Beatriz Garbin
+
+* Gabrielly Golçalves
+
+* Rafaelly Vieira
+
+* Raissa Mauricio
+
+* Yasmim Vitória
 
 ---
 
 ## 📖 Sobre o projeto
 
 O **Letter Play** é um projeto desenvolvido pelos alunos da Escola SESI de Presidente Epitácio – SENAI, como parte das atividades do **3º ano do Ensino Médio**.
+
+O projeto foi desenvolvido com foco em atividades educativas e jogos interativos, proporcionando uma forma dinâmica e divertida de aprendizagem.
+
+---
+
+# 🧩 Componentes utilizados no projeto
+
+O Letter Play foi desenvolvido utilizando diferentes componentes para organizar as telas, funcionalidades e jogos do sistema.
+
+### 🏠 Componentes principais
+
+* **HomeScreen** – tela inicial do sistema.
+
+* **TeacherLogin** – tela de login do professor.
+
+* **TeacherRegister** – tela de cadastro do professor.
+
+* **TeacherDashboard** – painel do professor.
+
+* **StudentLogin** – tela de login do aluno.
+
+* **StudentSelector** – seleção do aluno.
+
+* **StudentHub** – área principal do aluno.
+
+---
+
+### 🎮 Jogos e atividades
+
+* **DragDrop** – atividade de arrastar e soltar.
+
+* **SpellingQuiz** – quiz de ortografia.
+
+* **WordRace** – corrida de palavras.
+
+* **WordSearch** – caça-palavras.
+
+* **ImageWord** – associação imagem-palavra.
+
+* **Crossword** – palavras cruzadas.
+
+* **MathGame** – jogo de matemática.
+
+* **DrawingGame** – atividade de desenho livre.
+
+* **MathPortugues** – atividade envolvendo Matemática e Português.
+---
+
+# 💻 Tecnologias utilizadas
+
+* **React** – desenvolvimento da interface e dos componentes.
+
+* **TypeScript** – tipagem e organização do código.
+
+* **Vite** – ferramenta utilizada para desenvolvimento e execução do projeto.
+
+* **Tailwind CSS** – estilização da interface.
+
+* **HTML** – estrutura das páginas.
+
+* **CSS** – personalização visual.
+
+* **Git** – controle de versão.
+
+* **GitHub** – armazenamento e compartilhamento do código.
 
 ---
 
@@ -35,10 +105,10 @@ git config --global user.email "SEU_EMAIL"
 Depois, faça o clone do repositório:
 
 ```bash
-git clone https://github.com/Biagarbin/LetterPlay.git 
+git clone https://github.com/Biagarbin/LetterPlay.git
 ```
 
-> **Observação:** substitua `SEU_NOME`, `SEU_EMAIL` e `URL_DO_REPOSITORIO` pelas informações correspondentes.
+> **Observação:** substitua `SEU_NOME` e `SEU_EMAIL` pelas informações correspondentes.
 
 ---
 
@@ -66,7 +136,7 @@ Esse comando instala os pacotes e dependências definidos no projeto.
 
 ## 4. 🚀 Iniciar o servidor local
 
-Para iniciar o servidor de desenvolvimento local (localhost:5173), execute:
+Para iniciar o servidor de desenvolvimento local (`localhost:5173`), execute:
 
 ```bash
 npm run dev
@@ -111,13 +181,16 @@ O comando `code .` abre a pasta atual diretamente no **Visual Studio Code**.
 ## 📝 Informações acadêmicas
 
 **Escola:** Escola SESI de Presidente Epitácio – SENAI
+
 **Projeto:** Letter Play
+
 **Ano:** 2026
+
 **Turma:** 3º EM
 
 ---
 
-**Desenvolvido por Ana Beatriz Garbin, Gabrielly Golçalves, Raissa Mauricio, Rafaelly Vieira e Yasmim Vitória.**
+**Desenvolvido por Ana Beatriz Garbin, Gabrielly Golçalves, Rafaelly Vieira, Raissa Mauricio e Yasmim Vitória.**
 
 ---
 
