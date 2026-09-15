@@ -14,10 +14,10 @@ const perguntas: Pergunta[] = [
     imagem:
       'https://images.unsplash.com/photo-1575377427642-087cf684f04d?w=600',
     opcoes: [
-      'XOCOLATE',
-      'CHOKOLATE',
       'CHOCOLATE',
-      'CHOCOLATHLE',
+      'XOCOLATE',
+      'CHOCOLATEE',
+      'CHOCOLATEI',
     ],
   },
 
@@ -26,10 +26,10 @@ const perguntas: Pergunta[] = [
     imagem:
       'https://images.unsplash.com/photo-1558788353-f76d92427f16?w=600',
     opcoes: [
-      'CACHORO',
       'CACHORRO',
-      'KACHORRO',
-      'CACHORU',
+      'CACHORO',
+      'CAXORRO',
+      'CACHORROU',
     ],
   },
 
@@ -65,7 +65,7 @@ const perguntas: Pergunta[] = [
       'COMPUTADOR',
       'KOMPUTADOR',
       'COMPUTADÔ',
-      'COMPUTADHOR',
+      'COMPUTADORR',
     ],
   },
 ]
@@ -190,8 +190,6 @@ function QuizDeOrtografia() {
   return (
     <main className="min-h-screen bg-[#FFFBF0]">
 
-    
-
       <header className="flex items-center justify-between px-6 py-5">
 
         <button
@@ -213,22 +211,16 @@ function QuizDeOrtografia() {
 
       </header>
 
-
-     
-
       <div className="mx-4 h-2 rounded-full bg-gray-200">
 
         <div
           className="h-2 rounded-full bg-[#4ECDC4] transition-all duration-500"
           style={{
-            width: `${(indice / perguntas.length) * 100}%`,
+            width: `${((indice + 1) / perguntas.length) * 100}%`,
           }}
         />
 
       </div>
-
-
-      
 
       <div className="mx-auto flex max-w-3xl flex-col items-center px-6 py-8">
 
@@ -240,15 +232,9 @@ function QuizDeOrtografia() {
           {vidas >= 2 ? '❤️' : '🖤'}
         </div>
 
-
-       
-
         <h2 className="mb-5 text-xl font-bold tracking-wide text-gray-500">
           COMO SE ESCREVE?
         </h2>
-
-
-    
 
         <div className="overflow-hidden rounded-[30px] shadow-lg">
 
@@ -259,9 +245,6 @@ function QuizDeOrtografia() {
           />
 
         </div>
-
-
-       
 
         <div className="mt-5 grid w-full max-w-2xl grid-cols-2 gap-4">
 
@@ -303,9 +286,6 @@ function QuizDeOrtografia() {
           })}
 
         </div>
-
-
-       
 
         <div className="mt-6 min-h-[40px] text-xl font-black">
 
