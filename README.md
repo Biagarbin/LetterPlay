@@ -1,12 +1,12 @@
 # 🎮 Letter Play
 
-## 🏫 Escola SESI de Presidente Epitácio – SENAI
+## Escola SESI de Presidente Epitácio – SENAI
 
 **Projeto:** Letter Play
 
 **Ano/Série:** 2026 – 3º EM
 
-### 👥 Integrantes
+### Integrantes
 
 * Ana Beatriz Garbin
 
@@ -20,7 +20,7 @@
 
 ---
 
-## 📖 Sobre o projeto
+## Sobre o projeto
 
 O **Letter Play** é um projeto desenvolvido pelos alunos da Escola SESI de Presidente Epitácio – SENAI, como parte das atividades do **3º ano do Ensino Médio**.
 
@@ -28,11 +28,11 @@ O projeto foi desenvolvido com foco em atividades educativas e jogos interativos
 
 ---
 
-# 🧩 Componentes utilizados no projeto
+#  Componentes utilizados no projeto
 
 O Letter Play foi desenvolvido utilizando diferentes componentes para organizar as telas, funcionalidades e jogos do sistema.
 
-### 🏠 Componentes principais
+###  Componentes principais
 
 * **HomeScreen** – tela inicial do sistema.
 
@@ -91,7 +91,7 @@ O Letter Play foi desenvolvido utilizando diferentes componentes para organizar 
 
 ---
 
-# 📋 Manual – Fichamento Técnico
+# Manual – Fichamento Técnico
 
 ## 1. 🔗 Conectar com o GitHub
 
@@ -112,7 +112,7 @@ git clone https://github.com/Biagarbin/LetterPlay.git
 
 ---
 
-## 2. 📂 Acessar a pasta do projeto
+## 2. Acessar a pasta do projeto
 
 Após realizar o clone, entre na pasta do projeto:
 
@@ -122,7 +122,7 @@ cd LetterPlay
 
 ---
 
-## 3. 📦 Instalar as dependências
+## 3.  Instalar as dependências
 
 Para instalar todas as dependências necessárias para executar o projeto, utilize:
 
@@ -133,8 +133,7 @@ npm install
 Esse comando instala os pacotes e dependências definidos no projeto.
 
 ---
-
-## 4. 🚀 Iniciar o servidor local
+## 4.  Iniciar o servidor local
 
 Para iniciar o servidor de desenvolvimento local (`localhost:5173`), execute:
 
@@ -146,7 +145,7 @@ Após executar esse comando, o terminal deverá apresentar o endereço local par
 
 ---
 
-## 5. 💻 Abrir o projeto no Visual Studio Code
+## 5.  Abrir o projeto no Visual Studio Code
 
 Caso seja necessário abrir um novo terminal, entre novamente na pasta do projeto:
 

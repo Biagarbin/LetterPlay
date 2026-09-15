@@ -8,12 +8,17 @@ type Atividade = {
   letras: string[]
 }
 
+type LetraDisponivel = {
+  id: number
+  letra: string
+}
+
 const atividades: Atividade[] = [
   {
     palavra: 'BORBOLETA',
     emoji: '🦋',
     dica: 'É um inseto que voa',
-    letras: ['B', 'T', 'O', 'L', 'O', 'A', 'E', 'R', 'B', 'H'],
+    letras: ['B', 'T', 'O', 'L', 'O', 'A', 'E', 'R', 'B'],
   },
   {
     palavra: 'CACHORRO',
@@ -76,7 +81,7 @@ function CorridaDasPalavras() {
 
   const [fase, setFase] = useState(0)
   const [letrasEscolhidas, setLetrasEscolhidas] = useState<string[]>([])
-  const [letrasDisponiveis, setLetrasDisponiveis] = useState<string[]>([])
+  const [letrasDisponiveis, setLetrasDisponiveis] = useState<LetraDisponivel[]>([])
   const [vidas, setVidas] = useState(2)
   const [tempo, setTempo] = useState(20)
   const [pontos, setPontos] = useState(0)
@@ -84,30 +89,31 @@ function CorridaDasPalavras() {
 
   const atividade = atividades[fase]
 
-  
-  function embaralharLetras(letras: string[]) {
-    return [...letras].sort(() => Math.random() - 0.5)
+  function embaralharLetras(letras: string[]): LetraDisponivel[] {
+    return [...letras]
+      .map((letra, index) => ({
+        id: index,
+        letra,
+      }))
+      .sort(() => Math.random() - 0.5)
   }
 
- 
   function iniciarFase(numero: number) {
     const novaAtividade = atividades[numero]
 
     setLetrasEscolhidas([])
     setLetrasDisponiveis(
-      embaralharLetras(novaAtividade.letras),
+      embaralharLetras(novaAtividade.letras)
     )
     setVidas(2)
     setTempo(20)
     setMensagem('')
   }
 
-  
   useEffect(() => {
     iniciarFase(fase)
   }, [fase])
 
-  
   useEffect(() => {
     if (tempo <= 0) {
       setMensagem('⏰ O tempo acabou!')
@@ -126,26 +132,27 @@ function CorridaDasPalavras() {
     return () => clearInterval(intervalo)
   }, [tempo, mensagem])
 
-  function escolherLetra(letra: string, index: number) {
+  function escolherLetra(letra: LetraDisponivel) {
     if (mensagem) return
 
     const proximaLetra =
       atividade.palavra[letrasEscolhidas.length]
 
-  
-    if (letra === proximaLetra) {
+    // ACERTO
+    if (letra.letra === proximaLetra) {
       const novasEscolhidas = [
         ...letrasEscolhidas,
-        letra,
+        letra.letra,
       ]
 
       setLetrasEscolhidas(novasEscolhidas)
 
+      // Remove somente a letra que foi clicada.
+      // Isso permite trabalhar corretamente com letras repetidas.
       setLetrasDisponiveis((anterior) =>
-        anterior.filter((_, i) => i !== index),
+        anterior.filter((item) => item.id !== letra.id)
       )
 
-      
       if (
         novasEscolhidas.length ===
         atividade.palavra.length
@@ -153,6 +160,7 @@ function CorridaDasPalavras() {
         const pontosGanhos = tempo * 5 + 50
 
         setPontos((valor) => valor + pontosGanhos)
+
         setMensagem(
           `🎉 Muito bem! +${pontosGanhos} pontos!`,
         )
@@ -161,7 +169,7 @@ function CorridaDasPalavras() {
       return
     }
 
-    
+    // ERRO
     const novasVidas = vidas - 1
 
     setVidas(novasVidas)
@@ -199,7 +207,6 @@ function CorridaDasPalavras() {
   return (
     <main className="min-h-screen bg-[#FFFBF0] text-[#263238]">
 
-      
       <header className="px-8 pt-6">
 
         <div className="relative flex items-center justify-between">
@@ -225,17 +232,12 @@ function CorridaDasPalavras() {
 
       </header>
 
-
-     
       <section className="mx-auto flex w-full max-w-3xl flex-col items-center px-6 pt-7">
 
-       
         <p className="mb-4 text-sm font-bold text-gray-400">
           FASE {fase + 1} DE {atividades.length}
         </p>
 
-
-       
         <div className="flex w-full max-w-[600px] items-center gap-8">
 
           <span className="w-12 text-2xl font-black text-[#4ADE80]">
@@ -255,8 +257,6 @@ function CorridaDasPalavras() {
 
         </div>
 
-
-        
         <div className="mt-7 flex h-[60px] w-full max-w-[600px] items-center rounded-full bg-[#F1F2F4] px-5">
 
           <div className="relative flex w-full items-center">
@@ -291,14 +291,10 @@ function CorridaDasPalavras() {
 
         </div>
 
-
-       
         <div className="mt-5 flex h-[150px] w-[150px] items-center justify-center overflow-hidden rounded-[24px] bg-white text-7xl shadow-md">
           {atividade.emoji}
         </div>
 
-
-        
         <div className="mt-3 flex gap-2 text-3xl">
 
           <span>
@@ -311,8 +307,6 @@ function CorridaDasPalavras() {
 
         </div>
 
-
-        
         <div className="mt-5 w-full max-w-[600px] rounded-2xl border-2 border-[#FFD93D] bg-[#FFFDF3] px-5 py-3 text-center">
 
           <p className="font-bold text-[#D97706]">
@@ -321,8 +315,6 @@ function CorridaDasPalavras() {
 
         </div>
 
-
-       
         <div className="mt-5 flex flex-wrap justify-center gap-2">
 
           {atividade.palavra.split('').map(
@@ -338,24 +330,22 @@ function CorridaDasPalavras() {
 
         </div>
 
-
-       
         <div className="mt-7 w-full max-w-[600px] rounded-[28px] bg-white px-8 py-7 shadow-sm">
 
           <div className="flex flex-wrap justify-center gap-3">
 
             {letrasDisponiveis.map(
-              (letra, index) => (
+              (letra) => (
 
                 <button
-                  key={`${letra}-${index}`}
+                  key={letra.id}
                   onClick={() =>
-                    escolherLetra(letra, index)
+                    escolherLetra(letra)
                   }
                   disabled={!!mensagem}
                   className="flex h-[64px] w-[64px] items-center justify-center rounded-2xl border-[3px] border-gray-200 bg-[#FAFAFA] text-2xl font-black shadow-sm transition hover:-translate-y-1 hover:bg-gray-100 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  {letra}
+                  {letra.letra}
                 </button>
 
               ),
@@ -365,8 +355,6 @@ function CorridaDasPalavras() {
 
         </div>
 
-
-        
         {mensagem && (
           <div className="mt-5 flex flex-col items-center gap-4">
 
@@ -397,8 +385,6 @@ function CorridaDasPalavras() {
           </div>
         )}
 
-
-        
         <div className="mt-5 flex gap-6 pb-8 text-sm font-bold text-gray-400">
 
           <span>
