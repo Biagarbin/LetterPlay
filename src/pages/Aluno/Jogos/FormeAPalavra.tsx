@@ -8,7 +8,7 @@ type Palavra = {
 
 const palavras: Palavra[] = [
   {
-    imagem: '🏔️',
+    imagem: '🌅',
     palavra: 'LAGO',
   },
   {
