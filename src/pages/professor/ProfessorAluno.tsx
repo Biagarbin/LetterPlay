@@ -5,6 +5,7 @@ type Aluno = {
   id: string
   nome: string
   email: string
+  senha: string
   turma: string
   nivelAlfabetico: string
   media: number
@@ -21,6 +22,7 @@ function ProfessorAlunos() {
 
   const [nome, setNome] = useState('')
   const [email, setEmail] = useState('')
+  const [senha, setSenha] = useState('')
   const [turma, setTurma] = useState('3º Ano – Turma A')
 
   useEffect(() => {
@@ -43,15 +45,23 @@ function ProfessorAlunos() {
   function salvarAluno(e: React.FormEvent) {
     e.preventDefault()
 
-    if (!nome.trim() || !email.trim()) {
-      alert('Preencha o nome e o e-mail do aluno.')
+    if (!nome.trim() || !email.trim() || !senha.trim()) {
+      alert(
+        'Preencha o nome, o e-mail e a senha do aluno.'
+      )
+      return
+    }
+
+    if (senha.length < 4) {
+      alert('A senha deve ter pelo menos 4 caracteres.')
       return
     }
 
     const novoAluno: Aluno = {
       id: Date.now().toString(),
-      nome,
-      email,
+      nome: nome.trim(),
+      email: email.trim(),
+      senha: senha,
       turma,
       nivelAlfabetico: 'Em avaliação',
       media: 0,
@@ -71,8 +81,11 @@ function ProfessorAlunos() {
 
     setNome('')
     setEmail('')
+    setSenha('')
     setTurma('3º Ano – Turma A')
     setMostrarForm(false)
+
+    alert('Aluno cadastrado com sucesso! 🎉')
   }
 
   function excluirAluno(id: string) {
@@ -84,24 +97,6 @@ function ProfessorAlunos() {
 
     const novaLista = alunos.filter(
       (aluno) => aluno.id !== id
-    )
-
-    setAlunos(novaLista)
-
-    localStorage.setItem(
-      'letterplay_alunos',
-      JSON.stringify(novaLista)
-    )
-  }
-
-  function alternarAudio(id: string) {
-    const novaLista = alunos.map((aluno) =>
-      aluno.id === id
-        ? {
-            ...aluno,
-            audioAtivo: !aluno.audioAtivo,
-          }
-        : aluno
     )
 
     setAlunos(novaLista)
@@ -133,7 +128,7 @@ function ProfessorAlunos() {
         color: '#26364D',
       }}
     >
-    
+      {/* HEADER */}
 
       <header
         style={{
@@ -202,7 +197,7 @@ function ProfessorAlunos() {
         </button>
       </header>
 
-      
+      {/* CONTEÚDO */}
 
       <main
         style={{
@@ -211,7 +206,7 @@ function ProfessorAlunos() {
           padding: '0 20px',
         }}
       >
-        
+        {/* MENU */}
 
         <nav
           style={{
@@ -227,7 +222,7 @@ function ProfessorAlunos() {
         >
           <button
             onClick={() =>
-              navigate('/professor/turmas')
+              navigate('/Professor/ProfessorTurmas')
             }
             style={menuButton(false)}
           >
@@ -242,7 +237,7 @@ function ProfessorAlunos() {
 
           <button
             onClick={() =>
-              navigate('/professor/desempenho')
+              navigate('/Professor/ProfessorDesempenho')
             }
             style={menuButton(false)}
           >
@@ -251,7 +246,7 @@ function ProfessorAlunos() {
 
           <button
             onClick={() =>
-              navigate('/professor/historico/1')
+              navigate('/Professor/ProfessorHistorico')
             }
             style={menuButton(false)}
           >
@@ -259,7 +254,7 @@ function ProfessorAlunos() {
           </button>
         </nav>
 
-       
+        {/* TÍTULO */}
 
         <div
           style={{
@@ -311,7 +306,7 @@ function ProfessorAlunos() {
           </button>
         </div>
 
-       
+        {/* FORMULÁRIO */}
 
         {mostrarForm && (
           <form
@@ -338,76 +333,131 @@ function ProfessorAlunos() {
               style={{
                 display: 'grid',
                 gridTemplateColumns:
-                  '1fr 1fr 1fr',
+                  'repeat(2, 1fr)',
                 gap: '15px',
               }}
             >
-              <input
-                type="text"
-                placeholder="Nome do aluno"
-                value={nome}
-                onChange={(e) =>
-                  setNome(e.target.value)
-                }
-                style={inputStyle}
-              />
+              {/* NOME */}
 
-              <input
-                type="email"
-                placeholder="E-mail"
-                value={email}
-                onChange={(e) =>
-                  setEmail(e.target.value)
-                }
-                style={inputStyle}
-              />
+              <div>
+                <label style={labelStyle}>
+                  Nome do aluno
+                </label>
 
-              <select
-                value={turma}
-                onChange={(e) =>
-                  setTurma(e.target.value)
-                }
-                style={inputStyle}
-              >
-                <option>
-                  1º Ano – Turma A
-                </option>
+                <input
+                  type="text"
+                  placeholder="Digite o nome"
+                  value={nome}
+                  onChange={(e) =>
+                    setNome(e.target.value)
+                  }
+                  style={inputStyle}
+                />
+              </div>
 
-                <option>
-                  1º Ano – Turma B
-                </option>
+              {/* EMAIL */}
 
-                <option>
-                  2º Ano – Turma A
-                </option>
+              <div>
+                <label style={labelStyle}>
+                  E-mail
+                </label>
 
-                <option>
-                  2º Ano – Turma B
-                </option>
+                <input
+                  type="email"
+                  placeholder="Digite o e-mail"
+                  value={email}
+                  onChange={(e) =>
+                    setEmail(e.target.value)
+                  }
+                  style={inputStyle}
+                />
+              </div>
 
-                <option>
-                  3º Ano – Turma A
-                </option>
+              {/* SENHA */}
 
-                <option>
-                  3º Ano – Turma B
-                </option>
+              <div>
+                <label style={labelStyle}>
+                  Senha
+                </label>
 
-                <option>
-                  4º Ano – Turma A
-                </option>
+                <input
+                  type="password"
+                  placeholder="Digite a senha"
+                  value={senha}
+                  onChange={(e) =>
+                    setSenha(e.target.value)
+                  }
+                  style={inputStyle}
+                />
 
-                <option>
-                  5º Ano – Turma A
-                </option>
-              </select>
+                <small
+                  style={{
+                    display: 'block',
+                    marginTop: '5px',
+                    color: '#999999',
+                    fontSize: '12px',
+                  }}
+                >
+                  Mínimo de 4 caracteres
+                </small>
+              </div>
+
+              {/* TURMA */}
+
+              <div>
+                <label style={labelStyle}>
+                  Turma
+                </label>
+
+                <select
+                  value={turma}
+                  onChange={(e) =>
+                    setTurma(e.target.value)
+                  }
+                  style={inputStyle}
+                >
+                  <option>
+                    1º Ano – Turma A
+                  </option>
+
+                  <option>
+                    1º Ano – Turma B
+                  </option>
+
+                  <option>
+                    2º Ano – Turma A
+                  </option>
+
+                  <option>
+                    2º Ano – Turma B
+                  </option>
+
+                  <option>
+                    3º Ano – Turma A
+                  </option>
+
+                  <option>
+                    3º Ano – Turma B
+                  </option>
+
+                  <option>
+                    4º Ano – Turma A
+                  </option>
+
+                  <option>
+                    5º Ano – Turma A
+                  </option>
+                </select>
+              </div>
             </div>
+
+            {/* BOTÕES */}
 
             <div
               style={{
                 display: 'flex',
                 gap: '10px',
-                marginTop: '18px',
+                marginTop: '20px',
               }}
             >
               <button
@@ -422,14 +472,17 @@ function ProfessorAlunos() {
                   cursor: 'pointer',
                 }}
               >
-                Salvar aluno
+                💾 Salvar aluno
               </button>
 
               <button
                 type="button"
-                onClick={() =>
+                onClick={() => {
                   setMostrarForm(false)
-                }
+                  setNome('')
+                  setEmail('')
+                  setSenha('')
+                }}
                 style={{
                   border: 'none',
                   background: '#eeeeee',
@@ -445,7 +498,7 @@ function ProfessorAlunos() {
           </form>
         )}
 
-        
+        {/* SEM ALUNOS */}
 
         {alunos.length === 0 ? (
           <div
@@ -481,6 +534,8 @@ function ProfessorAlunos() {
             </p>
           </div>
         ) : (
+          /* LISTA DE ALUNOS */
+
           <div
             style={{
               display: 'grid',
@@ -500,7 +555,7 @@ function ProfessorAlunos() {
                     '0 7px 17px rgba(0,0,0,0.06)',
                 }}
               >
-               
+                {/* CABEÇALHO DO ALUNO */}
 
                 <div
                   style={{
@@ -570,7 +625,7 @@ function ProfessorAlunos() {
                   </span>
                 </div>
 
-                
+                {/* INFORMAÇÕES */}
 
                 <div
                   style={{
@@ -597,7 +652,7 @@ function ProfessorAlunos() {
                   />
                 </div>
 
-               
+                {/* BOTÕES */}
 
                 <div
                   style={{
@@ -610,26 +665,15 @@ function ProfessorAlunos() {
                   <button
                     onClick={() =>
                       navigate(
-                        `/professor/historico/${aluno.id}`
+                        '/Professor/ProfessorHistorico'
                       )
                     }
-                    style={actionButton('#EEE8FF', '#6D3DF5')}
-                  >
-                    📋 Histórico
-                  </button>
-
-                  <button
-                    onClick={() =>
-                      alternarAudio(aluno.id)
-                    }
                     style={actionButton(
-                      '#E8FAF8',
-                      '#32BDB3'
+                      '#EEE8FF',
+                      '#6D3DF5'
                     )}
                   >
-                    {aluno.audioAtivo
-                      ? '🔊 Áudio'
-                      : '🔇 Áudio'}
+                    📋 Histórico
                   </button>
 
                   <button
@@ -667,7 +711,7 @@ function ProfessorAlunos() {
   )
 }
 
-
+/* MENU */
 
 function menuButton(ativo: boolean) {
   return {
@@ -685,6 +729,8 @@ function menuButton(ativo: boolean) {
     cursor: 'pointer',
   }
 }
+
+/* INFORMAÇÕES */
 
 function Info({
   titulo,
@@ -722,6 +768,8 @@ function Info({
   )
 }
 
+/* BOTÃO DE AÇÃO */
+
 function actionButton(
   background: string,
   color: string
@@ -738,6 +786,18 @@ function actionButton(
   }
 }
 
+/* LABEL */
+
+const labelStyle = {
+  display: 'block',
+  marginBottom: '6px',
+  fontSize: '14px',
+  fontWeight: 800,
+  color: '#555555',
+}
+
+
+
 const inputStyle = {
   width: '100%',
   boxSizing: 'border-box' as const,
@@ -748,5 +808,7 @@ const inputStyle = {
   outline: 'none',
   background: '#FFFBF0',
 }
+
+
 
 export default ProfessorAlunos

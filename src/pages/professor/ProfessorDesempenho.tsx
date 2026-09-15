@@ -314,7 +314,7 @@ function ProfessorDesempenho() {
         >
           <button
             onClick={() =>
-              navigate('/professor/turmas')
+              navigate('/Professor/ProfessorTurmas')
             }
             style={menuButton(false)}
           >
@@ -323,7 +323,7 @@ function ProfessorDesempenho() {
 
           <button
             onClick={() =>
-              navigate('/professor/alunos')
+              navigate('/Professor/ProfessorAluno')
             }
             style={menuButton(false)}
           >
@@ -333,12 +333,12 @@ function ProfessorDesempenho() {
           <button
             style={menuButton(true)}
           >
-            📊 Turma
+            📊 Desempenho
           </button>
 
           <button
             onClick={() =>
-              navigate('/professor/historico/1')
+              navigate('/Professor/ProfessorHistorico')
             }
             style={menuButton(false)}
           >

@@ -20,7 +20,7 @@ function ProfessorLogin() {
         'true'
       )
 
-      navigate('/professor/dashboard')
+      navigate('/Professor/ProfessorTurmas')
       return
     }
 

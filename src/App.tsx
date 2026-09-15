@@ -30,6 +30,8 @@ import DesenhoLivre from './pages/Aluno/Jogos/DesenhoLivre'
 
 import ProfessorAluno from './pages/professor/ProfessorAluno'
 
+import ProfessorTurmas from './pages/professor/ProfessorTurmas'
+
 import ProfessorTurma from './pages/professor/ProfessorTurma'
 
 import ProfessorDesempenho from './pages/professor/ProfessorDesempenho'
@@ -118,22 +120,27 @@ function App() {
         />
 
         <Route
-          path="/Professor/Aluno"
+          path="/Professor/ProfessorAluno"
           element={<ProfessorAluno/>}
         />
 
         <Route
-          path="/Professor/Turma"
+          path="/Professor/ProfessorTurmas"
+          element={<ProfessorTurmas/>}
+        />
+
+        <Route
+          path="/Professor/ProfessorTurma"
           element={<ProfessorTurma/>}
         />
 
         <Route
-          path="/Professor/Desempenho"
+          path="/Professor/ProfessorDesempenho"
           element={<ProfessorDesempenho/>}
         />
 
         <Route
-          path="/Professor/Historico"
+          path="/Professor/ProfessorHistorico"
           element={<ProfessorHistorico/>}
         />
 

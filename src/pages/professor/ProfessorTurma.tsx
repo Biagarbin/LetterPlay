@@ -1,6 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
+type Turma = {
+  id: string | number
+  ano: string
+  letra: string
+}
+
 type Aluno = {
   id: string
   nome: string
@@ -12,19 +18,6 @@ type Aluno = {
   jogosRealizados: number
   audioAtivo: boolean
 }
-
-type Turma = {
-  id: string
-  ano: string
-  letra: string
-}
-
-const coral = '#FF6B6B'
-const azul = '#60A5FA'
-const turquesa = '#4ECDC4'
-const roxo = '#C084FC'
-const laranja = '#FB923C'
-const verde = '#4ADE80'
 
 function ProfessorTurma() {
   const navigate = useNavigate()
@@ -55,25 +48,37 @@ function ProfessorTurma() {
     setAlunos(alunosSalvos)
   }, [navigate])
 
-  const turma = turmas.find(
-    (item) => item.id === id
-  )
 
-  const nomeTurma = turma
-    ? `${turma.ano} – Turma ${turma.letra}`
-    : ''
+  const turma = turmas.find(
+    (item) =>
+      String(item.id) === String(id)
+  )
 
   const alunosDaTurma = useMemo(() => {
     if (!turma) return []
 
-    return alunos.filter(
-      (aluno) =>
-        aluno.turma === `${turma.ano} ${turma.letra}` ||
-        aluno.turma === `${turma.ano} – Turma ${turma.letra}` ||
-        aluno.turma === `${turma.ano} - Turma ${turma.letra}` ||
-        aluno.turma === `Turma ${turma.letra}`
-    )
+    return alunos.filter((aluno) => {
+      const alunoTurma =
+        normalizarTurma(aluno.turma)
+
+      const turmaAtual =
+        normalizarTurma(
+          `${turma.ano} ${turma.letra}`
+        )
+
+      return alunoTurma === turmaAtual
+    })
   }, [alunos, turma])
+
+  function normalizarTurma(valor: string) {
+    return valor
+      .toLowerCase()
+      .replace(/–/g, '-')
+      .replace(/—/g, '-')
+      .replace(/turma/g, '')
+      .replace(/\s+/g, ' ')
+      .trim()
+  }
 
   function sair() {
     localStorage.removeItem(
@@ -85,10 +90,6 @@ function ProfessorTurma() {
     )
 
     navigate('/')
-  }
-
-  function editarAluno(aluno: Aluno) {
-    alert(`Editar aluno: ${aluno.nome}`)
   }
 
   function excluirAluno(aluno: Aluno) {
@@ -110,11 +111,42 @@ function ProfessorTurma() {
     )
   }
 
+  function alternarAudio(aluno: Aluno) {
+    const novosAlunos = alunos.map(
+      (item) =>
+        item.id === aluno.id
+          ? {
+              ...item,
+              audioAtivo:
+                !item.audioAtivo,
+            }
+          : item
+    )
 
-  function corDaMedia(media: number) {
-    if (media >= 80) return verde
-    if (media >= 50) return azul
-    return laranja
+    setAlunos(novosAlunos)
+
+    localStorage.setItem(
+      'letterplay_alunos',
+      JSON.stringify(novosAlunos)
+    )
+  }
+
+  function editarAluno(aluno: Aluno) {
+    navigate(
+      `/Professor/ProfessorAluno?editar=${aluno.id}`
+    )
+  }
+
+  function corMedia(media: number) {
+    if (media >= 80) {
+      return '#4ADE80'
+    }
+
+    if (media >= 50) {
+      return '#60A5FA'
+    }
+
+    return '#FB923C'
   }
 
   if (!turma) {
@@ -126,34 +158,50 @@ function ProfessorTurma() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontFamily: 'Nunito, Arial, sans-serif',
+          fontFamily:
+            'Nunito, Arial, sans-serif',
         }}
       >
         <div
           style={{
             background: '#ffffff',
-            padding: '40px',
             borderRadius: '25px',
+            padding: '50px',
             textAlign: 'center',
+            boxShadow:
+              '0 10px 30px rgba(0,0,0,0.08)',
           }}
         >
-          <div style={{ fontSize: '50px' }}>
+          <div
+            style={{
+              fontSize: '55px',
+            }}
+          >
             😕
           </div>
 
-          <h2>Turma não encontrada</h2>
+          <h2
+            style={{
+              fontWeight: 900,
+            }}
+          >
+            Turma não encontrada
+          </h2>
 
           <button
             onClick={() =>
-              navigate('/professor/turmas')
+              navigate(
+                '/Professor/ProfessorTurmas'
+              )
             }
             style={{
               border: 'none',
-              background: coral,
+              background: '#FF6B6B',
               color: '#ffffff',
               borderRadius: '14px',
-              padding: '12px 22px',
-              fontWeight: 800,
+              padding: '13px 25px',
+              fontSize: '16px',
+              fontWeight: 900,
               cursor: 'pointer',
             }}
           >
@@ -170,19 +218,22 @@ function ProfessorTurma() {
         minHeight: '100vh',
         background: '#FFFBF0',
         color: '#26364D',
-        fontFamily: 'Nunito, Arial, sans-serif',
+        fontFamily:
+          'Nunito, Arial, sans-serif',
       }}
     >
-      
+     
 
       <header
         style={{
-          height: '105px',
+          height: '100px',
           background: '#ffffff',
-          borderBottom: '1px solid #eeeeee',
+          borderBottom:
+            '1px solid #eeeeee',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
+          justifyContent:
+            'space-between',
           padding: '0 11%',
           boxSizing: 'border-box',
         }}
@@ -196,7 +247,7 @@ function ProfessorTurma() {
         >
           <div
             style={{
-              fontSize: '40px',
+              fontSize: '38px',
             }}
           >
             📚
@@ -206,7 +257,7 @@ function ProfessorTurma() {
             <h1
               style={{
                 margin: 0,
-                color: coral,
+                color: '#FF6B6B',
                 fontSize: '29px',
                 fontWeight: 900,
               }}
@@ -221,7 +272,7 @@ function ProfessorTurma() {
                 fontSize: '15px',
               }}
             >
-              Olá, Professora Ana! 👋
+              Olá, Professor ! 👋
             </p>
           </div>
         </div>
@@ -230,7 +281,8 @@ function ProfessorTurma() {
           onClick={sair}
           style={{
             background: '#ffffff',
-            border: '2px solid #E1E4E8',
+            border:
+              '2px solid #E1E4E8',
             borderRadius: '16px',
             padding: '10px 22px',
             color: '#777777',
@@ -253,7 +305,6 @@ function ProfessorTurma() {
         }}
       >
       
-
         <nav
           style={{
             background: '#ffffff',
@@ -269,7 +320,9 @@ function ProfessorTurma() {
         >
           <button
             onClick={() =>
-              navigate('/professor/turmas')
+              navigate(
+                '/Professor/ProfessorTurmas'
+              )
             }
             style={menuButton(true)}
           >
@@ -278,7 +331,9 @@ function ProfessorTurma() {
 
           <button
             onClick={() =>
-              navigate('/professor/alunos')
+              navigate(
+                '/Professor/Professoraluno'
+              )
             }
             style={menuButton(false)}
           >
@@ -287,7 +342,9 @@ function ProfessorTurma() {
 
           <button
             onClick={() =>
-              navigate('/professor/desempenho')
+              navigate(
+                '/Professor/ProfessorDesempenho'
+              )
             }
             style={menuButton(false)}
           >
@@ -296,7 +353,9 @@ function ProfessorTurma() {
 
           <button
             onClick={() =>
-              navigate('/professor/historico')
+              navigate(
+                '/Professor/ProfessorHistorico'
+              )
             }
             style={menuButton(false)}
           >
@@ -304,11 +363,13 @@ function ProfessorTurma() {
           </button>
         </nav>
 
-        
+       
 
         <button
           onClick={() =>
-            navigate('/professor/turmas')
+            navigate(
+              '/Professor/PrfessorTurmas'
+            )
           }
           style={{
             border: 'none',
@@ -329,7 +390,8 @@ function ProfessorTurma() {
         <div
           style={{
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent:
+              'space-between',
             alignItems: 'center',
             marginBottom: '25px',
             gap: '20px',
@@ -342,7 +404,9 @@ function ProfessorTurma() {
               fontWeight: 900,
             }}
           >
-            🏫 {nomeTurma} ({alunosDaTurma.length}{' '}
+            🏫 {turma.ano} – Turma{' '}
+            {turma.letra} (
+            {alunosDaTurma.length}{' '}
             {alunosDaTurma.length === 1
               ? 'aluno'
               : 'alunos'}
@@ -351,32 +415,33 @@ function ProfessorTurma() {
 
           <button
             onClick={() =>
-              navigate('/professor/alunos')
+              navigate(
+                '/Professor/ProfessorAluno'
+              )
             }
             style={{
               border: 'none',
-              background: turquesa,
+              background: '#4ECDC4',
               color: '#ffffff',
               borderRadius: '17px',
               padding: '14px 22px',
               fontSize: '16px',
               fontWeight: 900,
               cursor: 'pointer',
-              whiteSpace: 'nowrap',
             }}
           >
             + Adicionar aluno
           </button>
         </div>
 
-        
+       
 
         {alunosDaTurma.length === 0 ? (
-          <section
+          <div
             style={{
               background: '#ffffff',
-              borderRadius: '25px',
-              padding: '55px 30px',
+              borderRadius: '24px',
+              padding: '50px',
               textAlign: 'center',
               boxShadow:
                 '0 6px 18px rgba(0,0,0,0.05)',
@@ -385,7 +450,6 @@ function ProfessorTurma() {
             <div
               style={{
                 fontSize: '55px',
-                marginBottom: '10px',
               }}
             >
               👥
@@ -394,7 +458,6 @@ function ProfessorTurma() {
             <h3
               style={{
                 fontSize: '22px',
-                margin: '0 0 8px',
               }}
             >
               Nenhum aluno cadastrado
@@ -403,30 +466,31 @@ function ProfessorTurma() {
             <p
               style={{
                 color: '#999999',
-                marginBottom: '20px',
               }}
             >
-              Adicione alunos para começar a
-              acompanhar essa turma.
+              Essa turma ainda não possui
+              alunos.
             </p>
 
             <button
               onClick={() =>
-                navigate('/professor/alunos')
+                navigate(
+                  '/professor/alunos'
+                )
               }
               style={{
                 border: 'none',
-                background: turquesa,
+                background: '#4ECDC4',
                 color: '#ffffff',
-                borderRadius: '15px',
+                borderRadius: '14px',
                 padding: '13px 22px',
-                fontWeight: 800,
+                fontWeight: 900,
                 cursor: 'pointer',
               }}
             >
               + Adicionar aluno
             </button>
-          </section>
+          </div>
         ) : (
           <div
             style={{
@@ -441,31 +505,35 @@ function ProfessorTurma() {
                   key={aluno.id}
                   style={{
                     background: '#ffffff',
-                    borderRadius: '22px',
-                    padding: '17px 20px',
+                    borderRadius: '20px',
+                    padding:
+                      '16px 20px',
                     display: 'flex',
-                    alignItems: 'center',
-                    gap: '18px',
+                    alignItems:
+                      'center',
+                    gap: '17px',
                     boxShadow:
                       '0 5px 14px rgba(0,0,0,0.05)',
                   }}
                 >
-                  
 
                   <div
                     style={{
                       width: '48px',
                       height: '48px',
-                      borderRadius: '50%',
+                      borderRadius:
+                        '50%',
                       background:
                         index % 3 === 0
                           ? '#EAF3FF'
                           : index % 3 === 1
-                          ? '#FFF9E5'
-                          : '#E8F9EF',
+                          ? '#FFF8DF'
+                          : '#E7F9EE',
                       display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
+                      alignItems:
+                        'center',
+                      justifyContent:
+                        'center',
                       fontSize: '27px',
                       flexShrink: 0,
                     }}
@@ -482,7 +550,6 @@ function ProfessorTurma() {
                   <div
                     style={{
                       flex: 1,
-                      minWidth: 0,
                     }}
                   >
                     <h3
@@ -511,14 +578,15 @@ function ProfessorTurma() {
 
                   <strong
                     style={{
-                      fontSize: '23px',
-                      color: corDaMedia(
+                      fontSize: '22px',
+                      color: corMedia(
                         Number(
                           aluno.media || 0
                         )
                       ),
-                      minWidth: '50px',
-                      textAlign: 'right',
+                      minWidth: '55px',
+                      textAlign:
+                        'right',
                     }}
                   >
                     {Number(
@@ -527,12 +595,43 @@ function ProfessorTurma() {
                     %
                   </strong>
 
-
                 
 
                   <button
                     onClick={() =>
-                      editarAluno(aluno)
+                      alternarAudio(
+                        aluno
+                      )
+                    }
+                    title={
+                      aluno.audioAtivo
+                        ? 'Desativar áudio'
+                        : 'Ativar áudio'
+                    }
+                    style={{
+                      width: '52px',
+                      height: '38px',
+                      background:
+                        '#F5F6F8',
+                      border:
+                        '2px solid #D9DDE3',
+                      borderRadius:
+                        '12px',
+                      fontSize: '18px',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {aluno.audioAtivo
+                      ? '🔊'
+                      : '🔇'}
+                  </button>
+
+
+                  <button
+                    onClick={() =>
+                      editarAluno(
+                        aluno
+                      )
                     }
                     style={{
                       border: 'none',
@@ -550,11 +649,13 @@ function ProfessorTurma() {
                     Editar
                   </button>
 
-                 
+                  
 
                   <button
                     onClick={() =>
-                      excluirAluno(aluno)
+                      excluirAluno(
+                        aluno
+                      )
                     }
                     style={{
                       border: 'none',
@@ -581,8 +682,6 @@ function ProfessorTurma() {
   )
 }
 
-
-
 function menuButton(ativo: boolean) {
   return {
     border: 'none',
@@ -597,9 +696,6 @@ function menuButton(ativo: boolean) {
     fontSize: '16px',
     fontWeight: 800,
     cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '6px',
   }
 }
 

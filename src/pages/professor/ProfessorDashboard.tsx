@@ -1,13 +1,40 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+type Aluno = {
+  id: string
+  nome: string
+  email: string
+  turma: string
+  nivelAlfabetico?: string
+  media?: number
+  pontuacao?: number
+  jogosRealizados?: number
+  audioAtivo?: boolean
+}
+
+type Turma = {
+  id: string
+  ano: string
+  letra: string
+}
+
+type Atividade = {
+  id: string
+  alunoId?: string
+  jogo: string
+  nota: number
+  pontuacao: number
+  data: string
+}
+
 function ProfessorDashboard() {
   const navigate = useNavigate()
 
   const [nome, setNome] = useState('Professora')
-  const [alunos, setAlunos] = useState<any[]>([])
-  const [turmas, setTurmas] = useState<any[]>([])
-  const [atividades, setAtividades] = useState<any[]>([])
+  const [alunos, setAlunos] = useState<Aluno[]>([])
+  const [turmas, setTurmas] = useState<Turma[]>([])
+  const [atividades, setAtividades] = useState<Atividade[]>([])
 
   useEffect(() => {
     const logado = localStorage.getItem('letterplay_professor_logado')
@@ -22,15 +49,15 @@ function ProfessorDashboard() {
 
     setNome(nomeProfessor)
 
-    const alunosSalvos = JSON.parse(
+    const alunosSalvos: Aluno[] = JSON.parse(
       localStorage.getItem('letterplay_alunos') || '[]'
     )
 
-    const turmasSalvas = JSON.parse(
+    const turmasSalvas: Turma[] = JSON.parse(
       localStorage.getItem('letterplay_turmas') || '[]'
     )
 
-    const atividadesSalvas = JSON.parse(
+    const atividadesSalvas: Atividade[] = JSON.parse(
       localStorage.getItem('letterplay_atividades') || '[]'
     )
 
@@ -46,6 +73,16 @@ function ProfessorDashboard() {
     navigate('/')
   }
 
+  const mediaGeral =
+    alunos.length > 0
+      ? Math.round(
+          alunos.reduce(
+            (total, aluno) => total + Number(aluno.media || 0),
+            0
+          ) / alunos.length
+        )
+      : 0
+
   return (
     <div
       style={{
@@ -55,12 +92,12 @@ function ProfessorDashboard() {
         color: '#26364D',
       }}
     >
-    
+      
       <header
         style={{
           height: '100px',
-          background: '#ffffff',
-          borderBottom: '1px solid #eeeeee',
+          background: '#FFFFFF',
+          borderBottom: '1px solid #EEEEEE',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -68,7 +105,6 @@ function ProfessorDashboard() {
           boxSizing: 'border-box',
         }}
       >
-       
         <div
           style={{
             display: 'flex',
@@ -110,11 +146,10 @@ function ProfessorDashboard() {
           </div>
         </div>
 
-     
         <button
           onClick={sair}
           style={{
-            background: '#ffffff',
+            background: '#FFFFFF',
             border: '2px solid #E5E7EB',
             borderRadius: '16px',
             padding: '10px 22px',
@@ -136,10 +171,10 @@ function ProfessorDashboard() {
           padding: '0 20px',
         }}
       >
-     
+       
         <nav
           style={{
-            background: '#ffffff',
+            background: '#FFFFFF',
             borderRadius: '24px',
             padding: '8px',
             display: 'flex',
@@ -151,46 +186,108 @@ function ProfessorDashboard() {
           }}
         >
           <button
-            onClick={() => navigate('/Professor/Turma')}
-            style={menuButton(false)}
+            onClick={() => navigate('/Professor/ProfessorTurmas')}
+            style={menuButton(true)}
           >
             🏫 <span>Turmas</span>
           </button>
 
           <button
-            onClick={() => navigate('/Professor/Aluno')}
+            onClick={() => navigate('/Professor/ProfessorAluno')}
             style={menuButton(false)}
           >
             👥 <span>Alunos</span>
           </button>
 
           <button
-            onClick={() => navigate('/Professor/Desempenho')}
-            style={menuButton(true)}
+            onClick={() => navigate('/Professor/ProfessorDesempenho')}
+            style={menuButton(false)}
           >
-            📊 <span>Desempenho</span>
+            📊 <span>Turma</span>
           </button>
 
           <button
-            onClick={() => navigate('/Professor/Historico/1')}
+            onClick={() => navigate('/Professor/ProfessorHistorico/1')}
             style={menuButton(false)}
           >
             📋 <span>Histórico</span>
           </button>
-        </nav>       
+        </nav>
 
-      
+       
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            marginBottom: '28px',
+          }}
+        >
+          <h2
+            style={{
+              margin: 0,
+              fontSize: '38px',
+              fontWeight: 900,
+              color: '#26364D',
+            }}
+          >
+            Dashboard 
+          </h2>
+        </div>
+
+
+        
+        <div
+          style={{
+            marginTop: '30px',
+            background: '#FFFFFF',
+            borderRadius: '24px',
+            padding: '25px 30px',
+            boxShadow: '0 7px 17px rgba(0,0,0,0.06)',
+          }}
+        >
+          <h3
+            style={{
+              margin: '0 0 10px',
+              fontSize: '22px',
+              fontWeight: 900,
+            }}
+          >
+            📈 Média geral
+          </h3>
+
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '20px',
+            }}
+          >
+            <div
+              style={{
+                flex: 1,
+                height: '14px',
+                background: '#F0F1F3',
+                borderRadius: '20px',
+                overflow: 'hidden',
+              }}
+            >
+              
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   )
 }
 
 
+
 function menuButton(ativo: boolean) {
   return {
     border: 'none',
     background: ativo ? '#FF6B6B' : 'transparent',
-    color: ativo ? '#ffffff' : '#777777',
+    color: ativo ? '#FFFFFF' : '#777777',
     borderRadius: '17px',
     padding: '13px 20px',
     fontSize: '16px',
@@ -217,13 +314,15 @@ function ResumoCard({
   valor,
   cor,
 }: ResumoCardProps) {
+  const textoEscuro = cor === '#FFD93D'
+
   return (
     <div
       style={{
         background: cor,
         borderRadius: '24px',
         padding: '22px',
-        minHeight: '135px',
+        minHeight: '150px',
         boxSizing: 'border-box',
         boxShadow: '0 7px 15px rgba(0,0,0,0.08)',
       }}
@@ -241,10 +340,7 @@ function ResumoCard({
         style={{
           fontSize: '17px',
           fontWeight: 800,
-          color:
-            cor === '#FFD93D'
-              ? '#26364D'
-              : '#ffffff',
+          color: textoEscuro ? '#26364D' : '#FFFFFF',
         }}
       >
         {titulo}
@@ -254,10 +350,7 @@ function ResumoCard({
         style={{
           fontSize: '34px',
           fontWeight: 900,
-          color:
-            cor === '#FFD93D'
-              ? '#26364D'
-              : '#ffffff',
+          color: textoEscuro ? '#26364D' : '#FFFFFF',
           marginTop: '2px',
         }}
       >
@@ -288,13 +381,13 @@ function AcaoCard({
     <button
       onClick={onClick}
       style={{
-        background: '#ffffff',
+        background: '#FFFFFF',
         border: 'none',
         borderRadius: '24px',
         padding: '28px',
         textAlign: 'left',
         cursor: 'pointer',
-        minHeight: '170px',
+        minHeight: '180px',
         boxShadow: '0 7px 17px rgba(0,0,0,0.07)',
         transition: 'transform 0.2s',
       }}
@@ -317,7 +410,7 @@ function AcaoCard({
       <h3
         style={{
           margin: 0,
-          fontSize: '23px',
+          fontSize: '22px',
           fontWeight: 900,
           color: '#111111',
         }}
